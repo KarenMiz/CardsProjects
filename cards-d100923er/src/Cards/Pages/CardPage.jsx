@@ -6,7 +6,7 @@ export default function CardPage() {
   return ( <>
     <PageHeader
     title="Cards"
-    subtitle="On this page you can find all bussines cards from all categories"
+    subtitle="On this page you can find all bussines cards from all categories!"
   />
 
   <Cards />
