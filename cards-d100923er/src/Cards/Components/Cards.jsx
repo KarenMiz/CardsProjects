@@ -100,7 +100,7 @@ export default function Cards() {
           console.log("you delete card no" + id);
         };
         const HendelCardsLike = (id) => {
-          console.log("you loked card no" + id);
+          console.log("you liked card no" + id);
         };
        return cards.length === 0 ?
            (

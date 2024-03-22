@@ -24,7 +24,7 @@ export default function CardActionBar({ HendelCardsDelete, HendelCardsLike, card
                 <IconButton>
                     <CallIcon></CallIcon>
                 </IconButton>
-                <IconButton onClick={() => handleCardLike(cardId)}>
+                <IconButton onClick={() => handleCardEdit(cardId)}>
                     <FavoriteIcon></FavoriteIcon>
                 </IconButton>
             </Box>
