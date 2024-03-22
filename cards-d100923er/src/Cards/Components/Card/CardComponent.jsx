@@ -1,8 +1,8 @@
 import React from 'react'
 import { CardActionArea, Card } from '@mui/material';
-import CardHeader from './CardHeader';
 import CardBody from './CardBody';
-import ActionBar from './ActionBar';
+import CardHeaderComponent from './CardHeaderComponent';
+import CardActionBar from './CardActionBar';
 
 
 
@@ -11,7 +11,7 @@ export default function CardComponent({ card }) {
   return (<>
     <Card sx={{ width: 250, m: 2 }}>
       <CardActionArea>
-        <CardHeader image={card.image} />
+        <CardHeaderComponent image={card.image} />
         <CardBody
           bizNumber={card.bizNumber}
           title={card.title}
@@ -22,7 +22,7 @@ export default function CardComponent({ card }) {
         />
 
       </CardActionArea>
-      <ActionBar />
+      <CardActionBar/>
     </Card>
   </>
   );

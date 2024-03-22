@@ -1,9 +1,7 @@
 import React from 'react'
 import CardComponent from './Card/CardComponent';
 import { Container, Typography } from '@mui/material';
-
-export default function Cards() {
-    const cards = [
+const cards = [
         {
           _id: "63765801e20ed868a69a62c4",
           title: "first",
@@ -97,8 +95,7 @@ export default function Cards() {
           user_id: "63765804e20ed868a69a62c5",
         },
       ];
-      
-      
+export default function Cards() {
         const HendelCardsDelete = (id) => {
           console.log("you delete card no" + id);
         };

@@ -9,6 +9,7 @@ export default function CardHeaderComponent({image}) {
             width="200"
             image={image.url}
             alt={image.alt}>
+                
         </CardMedia>
     )
 }
