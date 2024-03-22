@@ -115,7 +115,7 @@ export default function Cards() {
         {cards.map((card)=>(
         <CardComponent
          card={card}
-         handlCardsDelete={handelCardsDelete}
+         handelCardsDelete={handelCardsDelete}
          handelCardsLike={handelCardsLike}
          key={card._id}
           /> 
