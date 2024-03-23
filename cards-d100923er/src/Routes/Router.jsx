@@ -1,9 +1,9 @@
 import React from 'react'
 import ROUTES from './routesModel'
 import CardPage from '../Cards/Pages/CardPage'
-import AboutPage from '../Pages/AboutPage'
+import AboutPage from '../pages/AboutPage'
 import { Route, Routes } from 'react-router-dom'
-import ErrorPage from '../Pages/ErrorPage'
+import ErrorPage from '../pages/ErrorPage'
 
 export default function Router() {
   return (
