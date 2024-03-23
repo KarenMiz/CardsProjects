@@ -5,18 +5,18 @@ import CallIcon from '@mui/icons-material/Call';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import React from 'react'
  
-export default function CardActionBar({ handelCardsDelete, handelCardsLike, cardID }) {
+export default function CardActionBar({ handelCardsDelete, handelCardsLike, cardId }) {
  
     const handleCardEdit = (id) => {
-        console.log(`you edit card no` + (id));
+        console.log(`you edit card no` + id);
     }
     return (
         <CardActions sx={{ paddingTop: 0, justifyContent: "space-between" }}>
             <Box>
-                <IconButton onClick={() => handelCardsDelete(cardID)}>
+                <IconButton onClick={() => handelCardsDelete(cardId)}>
                     <DeleteIcon></DeleteIcon>
                 </IconButton>
-                <IconButton onClick={() => handleCardEdit(cardID)}>
+                <IconButton onClick={() => handleCardEdit(cardId)}>
                     <EditIcon></EditIcon>
                 </IconButton>
             </Box>
@@ -24,7 +24,7 @@ export default function CardActionBar({ handelCardsDelete, handelCardsLike, card
                 <IconButton>
                     <CallIcon></CallIcon>
                 </IconButton>
-                <IconButton onClick={() => handelCardsLike(cardID)}>
+                <IconButton onClick={() => handelCardsLike(cardId)}>
                     <FavoriteIcon></FavoriteIcon>
                 </IconButton>
             </Box>

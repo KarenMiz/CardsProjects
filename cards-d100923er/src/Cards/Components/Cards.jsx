@@ -1,7 +1,7 @@
 import React from 'react'
 import CardComponent from './Card/CardComponent';
 import { Container, Typography } from '@mui/material';
-import CardActionBar from './Card/CardActionBar';
+
 const cards = [
         {
           _id: "63765801e20ed868a69a62c4",
@@ -97,11 +97,11 @@ const cards = [
         },
       ];
 export default function Cards() {
-        const handelCardsDelete = (_id) => {
-          console.log(`you delete card no ${_id}`);
+        const handelCardsDelete = (id) => {
+          console.log("you delete card no" + id);
         };
-        const handelCardsLike = (_id) => {
-          console.log("you liked card no" + _id);
+        const handelCardsLike = (id) => {
+          console.log("you liked card no" + id);
         };
        return cards.length === 0 ?
            (
@@ -111,20 +111,16 @@ export default function Cards() {
           )
         :
       
-        ( <Container sx={{display: "flex"}}>
+        ( <Container sx={{display: "flex", flexWrap: "wrap"}}>
         {cards.map((card)=>(
         <CardComponent
+         key={card._id}
          card={card}
          handelCardsDelete={handelCardsDelete}
          handelCardsLike={handelCardsLike}
-         key={card._id}
           /> 
         ))}
-       <CardActionBar
-       handelCardsDelete={handelCardsDelete}
-       handelCardsLike={handelCardsLike}
        
-       />
         </Container>
       );}
        
