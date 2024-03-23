@@ -2,6 +2,7 @@ import React from 'react'
 import CardComponent from './Card/CardComponent';
 import { Container, Typography } from '@mui/material';
 
+
 const cards = [
         {
           _id: "63765801e20ed868a69a62c4",
@@ -122,5 +123,6 @@ export default function Cards() {
         ))}
        
         </Container>
-      );}
+      );
+    }
        

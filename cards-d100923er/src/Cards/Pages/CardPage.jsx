@@ -1,16 +1,15 @@
 import React from 'react'
-import PageHeader from '../Components/PageHeader';
+import PageHeader from '../../component/PageHeader';
 import Cards from '../Components/Cards'
 
 export default function CardPage() {
-  return ( <>
+  return (<>
     <PageHeader
-    title="Cards"
-    subtitle="On this page you can find all bussines cards from all categories!"
-  />
+      title="Cards"
+      subtitle="On This Page You Can Find All Bussines Cards From All Categories"
+    />
 
-  <Cards />
+    <Cards />
   </>
   );
 }
-  
