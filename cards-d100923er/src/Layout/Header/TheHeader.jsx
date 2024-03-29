@@ -1,9 +1,10 @@
-import { Typography } from '@mui/material'
 import React from 'react'
+import NavBar from './topNavBar/NavBar';
 
 export default function TheHeader() {
   return (
     <>
-    <Typography>Header</Typography></>
-  )
+    <NavBar /> 
+    </>
+  );
 }

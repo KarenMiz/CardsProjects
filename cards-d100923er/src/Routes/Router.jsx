@@ -5,6 +5,7 @@ import AboutPage from '../pages/AboutPage'
 import { Route, Routes } from 'react-router-dom'
 import ErrorPage from '../pages/ErrorPage'
 import SandBox from '../sandBox/SandBox'
+import CardDetailsPage from '../Cards/Pages/CardDetailsPage'
 
 export default function Router() {
   return (
@@ -14,6 +15,7 @@ export default function Router() {
       <Route path={ROUTES.CARDS} element={<CardPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.SANDBOX} element={<SandBox />} />
+      <Route path={ROUTES.CARD_INFO + "/:id"} element={<CardDetailsPage />} />
       <Route path='*' element={<ErrorPage/>} />
     </Routes>
     </div>
