@@ -10,6 +10,6 @@ export default function LifeCycle() {
 
 
   return (
-    <div>LifeCycle</div>
+    <div>LifeCycle!</div>
   )
 }

@@ -8,10 +8,11 @@ import ROUTES from '../../../../routes/routesModel'
 export default function LeftNavBar() {
     return (
         <Box>
-            <LogoIcon />
-            <Logo />
+            <LogoIcon to={ROUTES.CARDS} label={"Cards"} />
+            <Logo to= {ROUTES.CARDS} label={"Cards"} />
             <NavItem to={ROUTES.CARDS} label={"Cards"} />
             <NavItem to={ROUTES.ABOUT} label={"About"} />
+            <NavItem to={ROUTES.SANDBOX} label={"Sand Box"}/>
         </Box>
     );
 }

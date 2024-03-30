@@ -11,7 +11,7 @@ export default function CardDetailsPage() {
                 title="Card Details"
                 subtitle="Here you can find all details aboud specific card"
             />
-            <Typography>ID of Card {id}</Typography>
+            <Typography>ID of Card: {id}</Typography>
         </Container>
     );
 }

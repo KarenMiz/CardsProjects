@@ -2,26 +2,31 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 export default function Counter() {
-  const [Counter, setCounter] = useState(0);
-    useEffect(() => {
-        if(Counter % 7=== 0 | Counter.toString.includes("7"))
-        console.log("BOOM");
-        return () => {
-            console.log("count has unmount");
-        }
-    },[Counter]);
+  const [counter, setCounter] = useState(0);
 
-
+  useEffect(() => {
+   
+    if  (counter % 7 === 0 || counter.toString().includes("7")) {
+      console.log("BOOM");
+    }
+    
+    return () => {
+      console.log("count has unmounted");
+    };
+  }, [counter]);
 
   const increment = () => {
-    setCounter((prev) => prev +1);
+    setCounter((prev) => prev + 1);
   };
+
   const decrement = () => {
-    setCounter((prev) => prev -1);
+    setCounter((prev) => prev - 1);
   };
+
   const resetCounter = () => {
     setCounter(0);
   };
+
   return (
     <Box
       display="flex"
@@ -41,7 +46,7 @@ export default function Counter() {
         p={2}
         sx={{ border: "2px solid grey" }}
       >
-        <Typography variant="h3">{Counter}</Typography>
+        <Typography variant="h3">{counter}</Typography>
       </Box>
       <Box>
         <Button variant="contained" sx={{ mr: 4 }} onClick={increment}>
