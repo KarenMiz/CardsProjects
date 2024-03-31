@@ -9,6 +9,7 @@ import CardDetailsPage from '../Cards/Pages/CardDetailsPage'
 import Counter from '../sandBox/Counter'
 import LifeCycle from '../sandBox/LifeCycle'
 import Countries from '../sandBox/Countries'
+import FormExample from '../sandBox/FormExample'
 
 export default function Router() {
   return (
@@ -22,6 +23,7 @@ export default function Router() {
           <Route path="counter" element ={<Counter />} />
           <Route path="LifeCycle" element ={<LifeCycle />} />
           <Route path="countreis" element ={<Countries/>} />
+          <Route path="FormExample" element ={<FormExample />} />
         </Route>
         <Route path='*' element={<ErrorPage />} />
       </Routes>
