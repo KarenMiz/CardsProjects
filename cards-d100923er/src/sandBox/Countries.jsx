@@ -1,33 +1,58 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { Box, Typography } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
 export default function Countries() {
-  const [countreisList, setcountreisList] = useState([]);
+  const [countriesList, setCountriesList] = useState([]);
+
   useEffect(() => {
-    const getAllCountreis = async () => {
+    const getAllCountries = async () => {
       try {
         const response = await axios.get("https://restcountries.com/v3.1/all");
         const data = response.data;
-        setcountreisList(data);
-      }
-      catch (error) {
+        setCountriesList(data);
+      } catch (error) {
         console.log("error", error);
       }
     };
 
-    getAllCountreis(); // הפעלה של הפונקציה אחרי שהגדרתי בשורה 8
+    getAllCountries();
   }, []);
 
   return (
-    <div>
-      {countreisList.length === 0 ?
-        (<Typography>טוען..</Typography>) :
-        (countreisList.map((country, index) => (
-          <Box key={index}>
-            <Typography>{country.name.common}</Typography>
-          </Box>
-        )))}
-    </div>
+    <>
+      {countriesList.length === 0 ? (
+        <Typography>טוען..</Typography>
+      ) : (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell align="left">Country Name:</TableCell>
+                <TableCell align="left">Languages</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {countriesList.map((country, index) => (
+                <TableRow key={index} 
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">{country.name.common}</TableCell>
+                  <TableCell component="th" scope="row">
+                    {country.languages ? (
+                      Object.values(country.languages).map((language, i) => (
+                        <span key={i}>{language}</span>
+                      ))
+                    ) : (
+                      <span>No languages</span>
+                    )}
+                  </TableCell>
+
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+    </>
   );
 }

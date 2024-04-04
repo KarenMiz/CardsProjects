@@ -1,5 +1,6 @@
 import { CardContent, CardHeader, Divider, Typography } from '@mui/material'
 import React from 'react'
+
  
 export default function CardBody({ title, subtitle, phone, address, bizNumber }) {
     return (
@@ -20,6 +21,7 @@ export default function CardBody({ title, subtitle, phone, address, bizNumber })
                     <strong>Card Number:</strong> {bizNumber}
                 </Typography>
             </CardContent>
+           
         </>
     )
 }

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 
 
 export default function Spinner() {
-    const Spinner = ({ color, size, height }) => {
+    const Spinner = ({ color= "primary", size=40, height="50vh" }) => {
         console.log("SPINNER");
         return (
           <Box
@@ -23,3 +23,4 @@ export default function Spinner() {
         );
       };
     }
+   

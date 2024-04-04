@@ -3,7 +3,7 @@ import React from 'react'
 import PageHeader from '../../component/PageHeader';
 import { useParams } from 'react-router-dom';
 
-export default function CardDetailsPage() {
+export default function CardDetailsPage({cards}) {
     const {id} = useParams();
     return (
         <Container>
