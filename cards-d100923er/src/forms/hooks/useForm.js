@@ -1,7 +1,8 @@
 import { useState } from "react";
+import Joi from "joi";
 
 export default function useForm(initialForm, schema, handleSubmit) {
-  const [data, setData] = useState();
+  const [data, setData] = useState(initialForm);
   const [errors, setErrors] = useState({});
 
   const validateProperty = (name, value) => {
@@ -14,6 +15,25 @@ export default function useForm(initialForm, schema, handleSubmit) {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
+    const errorMessage = validateProperty(name, value);
+    if (errorMessage) {
+      setErrors((prev) => ({ ...prev, [name]: errorMessage }));
+    } else {
+      setErrors((prev) => {
+        let obj = { ...prev };
+        delete obj[name];
+        return obj;
+      });
+    }
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleChangeCheckBox = (event) => {
+    const name = event.target.name;
+    const value = event.target.checked;
     const errorMessage = validateProperty(name, value);
     if (errorMessage) {
       setErrors((prev) => ({ ...prev, [name]: errorMessage }));
@@ -46,5 +66,13 @@ export default function useForm(initialForm, schema, handleSubmit) {
     handleSubmit(data);
   };
 
-  return { data, errors, handleChange, handleReset, validateForm, onSubmit };
+  return {
+    data,
+    errors,
+    handleChange,
+    handleReset,
+    validateForm,
+    onSubmit,
+    handleChangeCheckBox,
+  };
 }

@@ -2,6 +2,7 @@ import React from "react";
 import TextField from "@mui/material/TextField";
 
 import Grid from "@mui/material/Grid";
+import { makeFirstLetterCapital } from "../utils/algoMethods";
 
 const Input = ({
   variant = "outlined",
@@ -18,7 +19,7 @@ const Input = ({
     <Grid item xs={12} {...rest}>
       <TextField
         variant={variant}
-        label={label}
+        label={makeFirstLetterCapital(label)}
         type={type}
         id={name}
         name={name}
