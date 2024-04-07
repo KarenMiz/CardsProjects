@@ -1,31 +1,13 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import useCounter from "./hooks/useCounter";
+import useWindowSite from "./hooks/useWindowSite";
 
 export default function Counter() {
-  const [counter, setCounter] = useState(0);
+  const { counter, increment, decrement, resetCounter } = useCounter(0, 2);
+  const { width, height } = useWindowSite();
+  console.log(width);
+  console.log(height);
 
-  useEffect(() => {
-   
-    if  (counter % 7 === 0 || counter.toString().includes("7")) {
-      console.log("BOOM");
-    }
-    
-    return () => {
-      console.log("count has unmounted");
-    };
-  }, [counter]);
-
-  const increment = () => {
-    setCounter((prev) => prev + 1);
-  };
-
-  const decrement = () => {
-    setCounter((prev) => prev - 1);
-  };
-
-  const resetCounter = () => {
-    setCounter(0);
-  };
 
   return (
     <Box

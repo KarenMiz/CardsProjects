@@ -11,6 +11,7 @@ import LifeCycle from '../sandBox/LifeCycle'
 import Countries from '../sandBox/Countries'
 import FormExample from '../sandBox/FormExample'
 
+
 export default function Router() {
   return (
     <div>
@@ -20,10 +21,10 @@ export default function Router() {
         <Route path={ROUTES.ABOUT} element={<AboutPage />} />
         <Route path={ROUTES.CARD_INFO + "/:id"} element={<CardDetailsPage />} />
         <Route path={ROUTES.SANDBOX} element={<SandBox />}>
-          <Route path="counter" element ={<Counter />} />
-          <Route path="LifeCycle" element ={<LifeCycle />} />
-          <Route path="countreis" element ={<Countries/>} />
-          <Route path="FormExample" element ={<FormExample />} />
+          <Route path="counter" element={<Counter />} />
+          <Route path="LifeCycle" element={<LifeCycle />} />
+          <Route path="countreis" element={<Countries />} />
+          <Route path="FormExample" element={<FormExample />} />
         </Route>
         <Route path='*' element={<ErrorPage />} />
       </Routes>

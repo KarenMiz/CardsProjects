@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
-import Joi, { Boolean } from "joi";
+import Joi from "joi";
 
 const schema = {
   firstName: Joi.string().min(2),
@@ -34,7 +34,7 @@ export default function FormExample() {
       setErrors((prev) => ({ ...prev, [name]: errorMessage }));
     } else {
       setErrors((prev) => {
-        let obj = { ...prev };
+        let obj = { ...prev }; //בגלל שזה אובייקט אני פותחת אותו-זה כמו לכתוב את שתי התכונות
         delete obj[name];
         return obj;
       });
