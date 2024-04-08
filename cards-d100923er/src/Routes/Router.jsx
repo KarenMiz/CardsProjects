@@ -12,6 +12,7 @@ import Countries from '../sandBox/Countries'
 import FormExample from '../sandBox/FormExample'
 import SignupPage from '../users/pages/SignupPage'
 import LoginPage from '../users/pages/LoginPage'
+import ParentComponent from '../sandBox/optimization/ParentComponent'
 
 
 export default function Router() {
@@ -22,13 +23,14 @@ export default function Router() {
         <Route path={ROUTES.CARDS} element={<CardPage />} />
         <Route path={ROUTES.ABOUT} element={<AboutPage />} />
         <Route path={ROUTES.CARD_INFO + "/:id"} element={<CardDetailsPage />} />
-        <Route path={ROUTES.SIGNUP} element={<SignupPage/>} />
+        <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route path={ROUTES.SANDBOX} element={<SandBox />}>
           <Route path="counter" element={<Counter />} />
           <Route path="LifeCycle" element={<LifeCycle />} />
           <Route path="countreis" element={<Countries />} />
           <Route path="FormExample" element={<FormExample />} />
+          <Route path="ParentComponent" element={<ParentComponent />} />
         </Route>
         <Route path='*' element={<ErrorPage />} />
       </Routes>
