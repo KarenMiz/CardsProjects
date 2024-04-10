@@ -1,29 +1,33 @@
-import { Container, Typography } from '@mui/material';
-import React, { useEffect } from 'react'
-import PageHeader from '../../component/PageHeader';
-import { useParams } from 'react-router-dom';
-import useCards from '../hooks/useCards';
-import Spinner from '../../component/Spinner';
-import Error from '../../component/Error';
+import React, { useEffect } from "react";
+import Container from "@mui/material/Container";
+import PageHeader from "../../component/PageHeader";
+import { useParams } from "react-router-dom";
+import { Typography } from "@mui/material";
+import useCards from "../hooks/useCards";
+import Spinner from "../../component/Spinner";
+import Error from "../../component/Error";
+
 
 export default function CardDetailsPage() {
     const { id } = useParams();
-    const { card, isLoading, error, getCardById} = useCards();
+    const { card, error, isLoading, getCardById } = useCards();
+
     useEffect(() => {
         getCardById(id);
-    }, [id])
+    }, [id]);
 
-    if (isLoading) return <Spinner />;
+    if (isLoading) return <Spinner />
     if (error) return <Error errorMessage={error} />;
-    
     return (
         <Container>
             <PageHeader
-                title="Card Details"
-                subtitle="Here you can find all details aboud specific card"
+                title="Card details"
+                subtitle="Here you can find all the details about specific card"
             />
-            <Typography>ID of Card: {id}</Typography>
-            <Typography>Details of Card: {card.title}</Typography>
+            <Typography>details of card {id}</Typography>
+            <Typography>details of card {card.title}</Typography>
+            <Typography>description of card {card.description}</Typography>
+            <img src={card.image.url} alt="Card Image" />
         </Container>
     );
 }

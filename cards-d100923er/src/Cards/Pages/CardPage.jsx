@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import CardsFeedback from '../Components/CardsFeedback';
 import useCards from '../hooks/useCards';
 
+
 export default function CardPage() {
   const { cards, isLoading, error, getAllCards, handelCardsDelete, handelCardsLike } = useCards();
   useEffect(() => {

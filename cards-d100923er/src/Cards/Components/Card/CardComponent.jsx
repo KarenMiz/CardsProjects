@@ -31,6 +31,7 @@ export default function CardComponent({ card, handelCardsDelete, handelCardsLike
         handelCardsLike={handelCardsLike}
         handelCardsDelete={handelCardsDelete}
         cardId={card._id}
+        UserId={card.user_id}
       />
     </Card>
   </>

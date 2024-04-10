@@ -6,7 +6,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import React from 'react'
  
 export default function CardActionBar({ handelCardsDelete, handelCardsLike, cardId }) {
- 
+    
     const handleCardEdit = (id) => {
         console.log(`you edit card no` + id);
     }
