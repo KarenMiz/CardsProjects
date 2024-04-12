@@ -7,7 +7,6 @@ import ErrorPage from '../pages/ErrorPage'
 import SandBox from '../sandBox/SandBox'
 import CardDetailsPage from '../Cards/Pages/CardDetailsPage'
 import Counter from '../sandBox/Counter'
-import LifeCycle from '../sandBox/LifeCycle'
 import Countries from '../sandBox/Countries'
 import FormExample from '../sandBox/FormExample'
 import SignupPage from '../users/pages/SignupPage'
@@ -28,7 +27,6 @@ export default function Router() {
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route path={ROUTES.SANDBOX} element={<SandBox />}>
           <Route path="counter" element={<Counter />} />
-          <Route path="LifeCycle" element={<LifeCycle />} />
           <Route path="countreis" element={<Countries />} />
           <Route path="FormExample" element={<FormExample />} />
           <Route path="ParentComponent" element={<ParentComponent />} />

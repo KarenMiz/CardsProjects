@@ -12,7 +12,7 @@ export default function SignupForm({
   errors,
   data,
   onInputChange,
-  setData,
+  handleChangeCheckBox,
 }) {
   return (
     <Form
@@ -146,7 +146,7 @@ export default function SignupForm({
       />
       <Grid item>
         <FormControlLabel
-          onChange={onInputChange}
+          onChange={handleChangeCheckBox}
           name="isBusiness"
           control={<Checkbox value={data.isBusiness} color="primary" />}
           label="Signup as business"

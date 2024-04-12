@@ -1,7 +1,7 @@
-export const  makeFirstLetterCapital = (text) => {
-     return text.charAt(0).toUpperCase()+text.slice(1).toLowerCase();
-}
-
+export const makeFirstLetterCapital = (text) => {
+     const term = text.toLowerCase().trim();
+     return term[0].toUpperCase() + term.slice(1);
+   };
 
 // אפשר גם ככה
 //return text[0].toUpperCase()+text.slice(1).toLowerCase();
