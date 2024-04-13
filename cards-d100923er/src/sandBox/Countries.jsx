@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from "axios";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
 export default function Countries() {
   const [countriesList, setCountriesList] = useState([]);
 
-  useEffect(() => {
-    const getAllCountries = async () => {
+  
+    const getAllCountries = useCallback(async () => {
       try {
         const response = await axios.get("https://restcountries.com/v3.1/all");
         const data = response.data;
@@ -14,11 +14,12 @@ export default function Countries() {
       } catch (error) {
         console.log("error", error);
       }
-    };
+    }, []);
 
-    getAllCountries();
-  }, []);
-
+    
+      useEffect(() => {
+        getAllCountries();
+      }, [getAllCountries])
   return (
     <>
       {countriesList.length === 0 ? (

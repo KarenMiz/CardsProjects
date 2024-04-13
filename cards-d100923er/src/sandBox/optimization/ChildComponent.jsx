@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export default function ChildComponent() {
+export default memo(function ChildComponent({ data, PrintSomething }) {
+  PrintSomething();
+  console.log("child");
   return (
-    <div>ChildComponent</div>
+    <div>Helllllo! {data.firstName}</div>
   )
-}
+});

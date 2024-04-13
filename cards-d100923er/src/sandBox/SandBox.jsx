@@ -11,7 +11,7 @@ export default function SandBox() {
           <NavItem to="counter" label="Counter Page" sx={{ color: "black" }} />
           <NavItem to="countreis" label="countreis" sx={{ color: "black" }} />
           <NavItem to="FormExample" label="Form Example" sx={{ color: "black" }} />
-          <NavItem to="ParentComponent" label="optimization" sx={{ color: "black" }} />
+          <NavItem to="optimization" label="optimization" sx={{ color: "black" }} />
           <NavItem to="context" label="context" sx={{ color: "black" }} />
         </Toolbar>
       </AppBar>

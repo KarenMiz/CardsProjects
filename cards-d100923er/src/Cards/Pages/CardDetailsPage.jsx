@@ -14,7 +14,7 @@ export default function CardDetailsPage() {
 
     useEffect(() => {
         getCardById(id);
-    }, [id]);
+    }, [id, getCardById]);
 
     if (isLoading) return <Spinner />
     if (error) return <Error errorMessage={error} />;
@@ -27,7 +27,7 @@ export default function CardDetailsPage() {
             <Typography>details of card {id}</Typography>
             <Typography>details of card {card.title}</Typography>
             <Typography>description of card {card.description}</Typography>
-            <img src={card.image.url} alt="Card Image" />
+            <img src={card.image.url} alt="Something Nice" />
         </Container>
     );
 }

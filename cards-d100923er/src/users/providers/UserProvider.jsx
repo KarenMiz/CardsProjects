@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React, { createContext, useContext } from 'react'
 
 export const UserDataContext = createContext();
 
@@ -12,8 +12,8 @@ export default function UserProvider({children}) {
     {children}
   </UserDataContext.Provider>}
 
-  export const UserDataUser= () => {
-    const context = UserDataUser (UserDataContext)
+  export const UserData= () => {
+    const context = useContext (UserDataContext)
     if (!context) throw new Error("useUser must be used within a provider");
     return context;
   }

@@ -29,7 +29,7 @@ export default function Router() {
           <Route path="counter" element={<Counter />} />
           <Route path="countreis" element={<Countries />} />
           <Route path="FormExample" element={<FormExample />} />
-          <Route path="ParentComponent" element={<ParentComponent />} />
+          <Route path="optimization" element={<ParentComponent />} />
           <Route path="context" element={<ParentComponentPage />} />
         </Route>
         <Route path='*' element={<ErrorPage />} />

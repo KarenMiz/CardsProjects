@@ -23,7 +23,7 @@ export default function useCards() {
   }, []);
 
   // פונקציה שמביאה את הכרטיס לפי איידי ספציפי
-  const getCardById = async (id) => {
+  const getCardById = useCallback(async (id) => {
     try {
       setError(null)
       setIsLoading(true)
@@ -35,14 +35,14 @@ export default function useCards() {
       setError(err.message)
     }
     setIsLoading(false);
-  };
+  }, []);
 
-  const handelCardsDelete = (id) => {
+  const handelCardsDelete = useCallback((id) => {
     console.log("you delete card no" + id);
-  };
-  const handelCardsLike = (id) => {
+  }, []);
+  const handelCardsLike = useCallback((id) => {
     console.log("you liked card no" + id);
-  };
+  }, []);
 
   return { card, cards, error, isLoading, getAllCards, getCardById, handelCardsLike, handelCardsDelete };
 }

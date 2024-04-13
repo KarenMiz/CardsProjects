@@ -4,21 +4,27 @@ import EditIcon from '@mui/icons-material/Edit';
 import CallIcon from '@mui/icons-material/Call';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import React from 'react'
+import { UserData } from '../../../users/providers/UserProvider';
  
 export default function CardActionBar({ handelCardsDelete, handelCardsLike, cardId }) {
-    
+    const user = UserData ();
+    const isAdmin = user.isAdmin;
     const handleCardEdit = (id) => {
         console.log(`you edit card no` + id);
     }
     return (
         <CardActions sx={{ paddingTop: 0, justifyContent: "space-between" }}>
             <Box>
-                <IconButton onClick={() => handelCardsDelete(cardId)}>
+                {isAdmin && (
+                    <>
+                <IconButton onClick={() => handelCardsDelete(cardId)}  >
                     <DeleteIcon></DeleteIcon>
                 </IconButton>
                 <IconButton onClick={() => handleCardEdit(cardId)}>
                     <EditIcon></EditIcon>
                 </IconButton>
+                </>
+            )}
             </Box>
             <Box>
                 <IconButton>

@@ -8,7 +8,15 @@ export default function CardPage() {
   const { cards, isLoading, error, getAllCards, handelCardsDelete, handelCardsLike } = useCards();
   useEffect(() => {
     getAllCards();
-  }, []);
+  }, [getAllCards]);
+
+  useEffect(() => {
+    handelCardsLike();
+  }, [handelCardsLike]);
+
+  useEffect(() => {
+    getAllCards();
+  }, [getAllCards]);
 
 
   return (<>
