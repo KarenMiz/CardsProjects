@@ -5,14 +5,14 @@ import useCards from '../hooks/useCards';
 
 
 export default function CardPage() {
-  const { cards, isLoading, error, getAllCards, handelCardsDelete, handelCardsLike } = useCards();
+  const { cards, isLoading, error, getAllCards, handelCardsDelete, handleCardLike } = useCards();
   useEffect(() => {
     getAllCards();
   }, [getAllCards]);
 
   useEffect(() => {
-    handelCardsLike();
-  }, [handelCardsLike]);
+    handleCardLike();
+  }, [handleCardLike]);
 
   useEffect(() => {
     getAllCards();
@@ -26,7 +26,7 @@ export default function CardPage() {
     />
     <CardsFeedback
       cards={cards}
-      handelCardsLike={handelCardsLike}
+      handleCardLike={handleCardLike}
       handelCardsDelete={handelCardsDelete}
       isLoading={isLoading}
       error={error}

@@ -1,39 +1,46 @@
-import { Box, CardActions, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import CallIcon from '@mui/icons-material/Call';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import React from 'react'
-import { UserData } from '../../../users/providers/UserProvider';
- 
-export default function CardActionBar({ handelCardsDelete, handelCardsLike, cardId }) {
-    const user = UserData ();
-    const isAdmin = user.isAdmin;
-    const handleCardEdit = (id) => {
-        console.log(`you edit card no` + id);
-    }
-    return (
-        <CardActions sx={{ paddingTop: 0, justifyContent: "space-between" }}>
-            <Box>
-                {isAdmin && (
-                    <>
-                <IconButton onClick={() => handelCardsDelete(cardId)}  >
-                    <DeleteIcon></DeleteIcon>
-                </IconButton>
-                <IconButton onClick={() => handleCardEdit(cardId)}>
-                    <EditIcon></EditIcon>
-                </IconButton>
-                </>
-            )}
-            </Box>
-            <Box>
-                <IconButton>
-                    <CallIcon></CallIcon>
-                </IconButton>
-                <IconButton onClick={() => handelCardsLike(cardId)}>
-                    <FavoriteIcon></FavoriteIcon>
-                </IconButton>
-            </Box>
-        </CardActions>
-    )
+import { Box, CardActions, IconButton } from "@mui/material";
+import React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import CallIcon from "@mui/icons-material/Call";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { UseUser } from '../../../users/providers/UserProvider';
+
+export default function CardActionBar({
+  handleCardLike,
+  handleCardDelete,
+  cardId,
+  userId,
+}) {
+  const { user } = UseUser();
+
+  const handleCardEdit = (id) => {
+    console.log("navigate to edit page for card " + id);
+  };
+
+  return (
+    <CardActions sx={{ paddingTop: 0, justifyContent: "space-between" }}>
+      <Box>
+        {user && (user.isAdmin || user._id === userId) ? (
+          <>
+            <IconButton onClick={() => handleCardDelete(cardId)}>
+              <DeleteIcon />
+            </IconButton>
+            <IconButton onClick={() => handleCardEdit(cardId)}>
+              <ModeEditIcon />
+            </IconButton>
+          </>
+        ) : null}
+      </Box>
+
+      <Box>
+        <IconButton>
+          <CallIcon />
+        </IconButton>
+        <IconButton onClick={() => handleCardLike(cardId)}>
+          <FavoriteIcon />
+        </IconButton>
+      </Box>
+    </CardActions>
+  );
 }

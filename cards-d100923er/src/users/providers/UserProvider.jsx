@@ -1,19 +1,30 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { getUser, getToken } from '../services/localStorageServices';
 
-export const UserDataContext = createContext();
+export const UserContext = createContext();
 
-export default function UserProvider({children}) {
-  const user = {
-    _id: "65424ae9a8d1eae12d31e360",
-    isBusiness: true,
-    isAdmin: false,
-  }
-  return <UserDataContext.Provider value={user}>
-    {children}
-  </UserDataContext.Provider>}
+export default function UserProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(getToken());
 
-  export const UserData= () => {
-    const context = useContext (UserDataContext)
-    if (!context) throw new Error("useUser must be used within a provider");
-    return context;
-  }
+  useEffect(() => {
+    if (!user) {
+      const userFromLocalStorage = getUser();
+      setUser(userFromLocalStorage);
+    }
+  }, [user]);
+
+  const value = useMemo(() => ({ user, setUser, token, setToken }), [user, token]);
+
+  return (
+    <UserContext.Provider value={value}>
+      {children}
+    </UserContext.Provider>
+  );
+}
+
+export const UseUser = () => {
+  const context = useContext(UserContext);
+  if (!context) throw new Error("useUser must be used within a provider");
+  return context;
+};

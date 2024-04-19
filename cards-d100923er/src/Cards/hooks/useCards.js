@@ -40,9 +40,9 @@ export default function useCards() {
   const handelCardsDelete = useCallback((id) => {
     console.log("you delete card no" + id);
   }, []);
-  const handelCardsLike = useCallback((id) => {
+  const handleCardLike = useCallback((id) => {
     console.log("you liked card no" + id);
   }, []);
 
-  return { card, cards, error, isLoading, getAllCards, getCardById, handelCardsLike, handelCardsDelete };
+  return { card, cards, error, isLoading, getAllCards, getCardById, handleCardLike, handelCardsDelete };
 }

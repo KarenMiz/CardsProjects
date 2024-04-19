@@ -1,16 +1,22 @@
-import React from 'react'
+import axios from "axios";
+const apiUrl = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards";
 
-const getCards = async ()=>{
-    const responce = await axios.get("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards");
-      const data = responce.data;
- }
+export const getCards = async () => {
+    try {
+        const response = await axios.get(apiUrl);
+        const data = response.data;
+        return data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
 
- const getCardByCardId = async () => {
-    const responce = await axios.get("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/" + id);
-    const data = responce.data;
-    setCard(data);
-  }
- 
-export default function cardsApiServices() {
- return {getCardByCardId , getCards}
-}
+export const getCard = async (cardId) => {
+    try {
+        const response = await axios.get(`${apiUrl}/${cardId}`);
+        const data = response.data;
+        return data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};

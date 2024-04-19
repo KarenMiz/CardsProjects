@@ -7,14 +7,20 @@ import Form from "../../forms/components/Form";
 import ROUTES from "../../routes/routesModel";
 import Input from "../../forms/components/Input";
 import PageHeader from "../../component/PageHeader";
+import { Navigate } from "react-router-dom";
+import useUsers from "../hooks/useUser";
+import { UseUser } from "../providers/UserProvider";
 
-const handleSubmit = (x) => {
-  console.log(x);
-};
+
+
 
 export default function LoginPage() {
+  const { handleLogin } = useUsers();
+  const { user } = UseUser();
   const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
-    useForm(initialLoginForm, loginSchema, handleSubmit);
+    useForm(initialLoginForm, loginSchema, handleLogin);
+
+  if (user) return <Navigate to={ROUTES.ROOT} replace />
   return (
     <Container>
       <PageHeader
