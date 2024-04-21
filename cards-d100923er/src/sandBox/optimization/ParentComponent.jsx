@@ -16,7 +16,7 @@ export default function ParentComponent() {
     console.log("parent render");
     return (
         <div>
-            <h4>{counter}</h4>
+            <h4>{counter} kk</h4>
             <button onClick={() => setCounter((prev) => prev + 1)}>+</button>
             <ChildComponent data={user} PrintSomething={PrintSomething} />
         </div>

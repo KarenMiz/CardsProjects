@@ -4,7 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import CallIcon from "@mui/icons-material/Call";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { UseUser } from '../../../users/providers/UserProvider';
+import { useUser } from '../../../users/providers/UserProvider';
 
 export default function CardActionBar({
   handleCardLike,
@@ -12,7 +12,7 @@ export default function CardActionBar({
   cardId,
   userId,
 }) {
-  const { user } = UseUser();
+  const { user } = useUser();
 
   const handleCardEdit = (id) => {
     console.log("navigate to edit page for card " + id);

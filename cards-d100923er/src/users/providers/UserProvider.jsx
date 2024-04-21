@@ -6,13 +6,13 @@ export const UserContext = createContext();
 export default function UserProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(getToken());
-
+ 
   useEffect(() => {
     if (!user) {
       const userFromLocalStorage = getUser();
       setUser(userFromLocalStorage);
     }
-  }, [user]);
+  }, [user]); 
 
   const value = useMemo(() => ({ user, setUser, token, setToken }), [user, token]);
 
@@ -23,7 +23,7 @@ export default function UserProvider({ children }) {
   );
 }
 
-export const UseUser = () => {
+export const useUser = () => {
   const context = useContext(UserContext);
   if (!context) throw new Error("useUser must be used within a provider");
   return context;

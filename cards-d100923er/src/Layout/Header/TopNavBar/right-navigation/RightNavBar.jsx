@@ -2,10 +2,10 @@ import { Box } from "@mui/material";
 import React from "react";
 import Logged from "./Logged";
 import NotLogged from "./NotLogged";
-import { UseUser } from "../../../../users/providers/UserProvider";
+import { useUser } from "../../../../users/providers/UserProvider";
 
 export default function RightNavBar() {
-  const { user } = UseUser();
+  const { user } = useUser();
   return (
     <>
       <Box

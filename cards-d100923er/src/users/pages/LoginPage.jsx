@@ -7,16 +7,20 @@ import Form from "../../forms/components/Form";
 import ROUTES from "../../routes/routesModel";
 import Input from "../../forms/components/Input";
 import PageHeader from "../../component/PageHeader";
-import { Navigate } from "react-router-dom";
+import { Navigate,Link  } from "react-router-dom";
 import useUsers from "../hooks/useUser";
-import { UseUser } from "../providers/UserProvider";
+import { useUser } from "../providers/UserProvider";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import { Button, Grid } from "@mui/material";
+
+
 
 
 
 
 export default function LoginPage() {
   const { handleLogin } = useUsers();
-  const { user } = UseUser();
+  const { user } = useUser();
   const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
     useForm(initialLoginForm, loginSchema, handleLogin);
 
@@ -59,6 +63,17 @@ export default function LoginPage() {
             onChange={handleChange}
             data={data}
           />
+            <Grid item xs={12}>
+            <Button
+              variant="outlined"
+              component={Link}
+              to={ROUTES.SIGNUP}
+              startIcon={<AccountBoxIcon />}
+              sx={{ width: "100%" }}
+            >
+              Sign Up
+            </Button>
+          </Grid>
         </Form>
       </Container>
     </Container>

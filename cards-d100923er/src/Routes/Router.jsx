@@ -13,7 +13,7 @@ import SignupPage from '../users/pages/SignupPage'
 import LoginPage from '../users/pages/LoginPage'
 import ParentComponent from '../sandBox/optimization/ParentComponent'
 import ParentComponentPage from '../sandBox/context/ParentComponentPage'
-
+import AddCardPage from '../Cards/Pages/AddCardPage'
 
 export default function Router() {
   return (
@@ -25,11 +25,12 @@ export default function Router() {
         <Route path={ROUTES.CARD_INFO + "/:id"} element={<CardDetailsPage />} />
         <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+        <Route path={ROUTES.CREATE_CARD} element={<AddCardPage/>} />
         <Route path={ROUTES.SANDBOX} element={<SandBox />}>
           <Route path="counter" element={<Counter />} />
           <Route path="countreis" element={<Countries />} />
           <Route path="FormExample" element={<FormExample />} />
-          <Route path="optimization" element={<ParentComponent />} />
+          <Route path="ParentComponent" element={<ParentComponent />} />
           <Route path="context" element={<ParentComponentPage />} />
         </Route>
         <Route path='*' element={<ErrorPage />} />

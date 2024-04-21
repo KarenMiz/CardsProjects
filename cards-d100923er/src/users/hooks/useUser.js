@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { UseUser } from "../providers/UserProvider";
+import { useUser } from "../providers/UserProvider";
 import { login, signup } from "../services/uesersApiService";
 import {
     getUser,
@@ -16,8 +16,8 @@ const useUsers = () => {
     const [isLoading, setIsLoading] = useState();
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const { user, setUser, setToken } = UseUser();
-
+    const { user, setUser, setToken } = useUser();
+ 
     const handleLogin = useCallback(
         async (userLogin) => {
             setIsLoading(true);

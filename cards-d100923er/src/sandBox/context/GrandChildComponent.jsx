@@ -7,7 +7,7 @@ export default function GrandChildComponent() {
     console.log(context);
     return (
         <div>
-            GrandChildComponent = {context.data1}, data2 {context.data2}
+            GrandChildComponent data1= {context.data1}, data2 ={context.data2}
         </div>
     )
 }

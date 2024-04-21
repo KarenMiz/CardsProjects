@@ -2,6 +2,7 @@ import PageHeader from '../../component/PageHeader';
 import React, { useEffect } from 'react'
 import CardsFeedback from '../Components/CardsFeedback';
 import useCards from '../hooks/useCards';
+import AddNewCardButton from './AddNewCardButton';
 
 
 export default function CardPage() {
@@ -31,6 +32,7 @@ export default function CardPage() {
       isLoading={isLoading}
       error={error}
     />
+    <AddNewCardButton />
   </>
   );
 }
