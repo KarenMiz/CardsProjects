@@ -1,16 +1,18 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Container } from "@mui/material";
 import Joi from "joi";
 import useForm from "../forms/hooks/useForm";
-
+import Form from "../forms/components/Form";
+import ROUTES from "../routes/routesModel";
+import Input from "../forms/components/Input";
 
 const schema = {
-  firstName: Joi.string().min(2),
-  lastName: Joi.string().min(2).max(10),
+  first: Joi.string().min(2),
+  last: Joi.string().min(2).max(10),
 };
 
 const initialForm = {
-  firstName: "",
-  lastName: "",
+  first: "",
+  last: "",
 };
 
 const handleSubmit = (data) => {
@@ -22,28 +24,37 @@ export default function FormExample() {
     useForm(initialForm, schema, handleSubmit);
 
   return (
-    <Box>
-      <Box sx={{ m: 10 }}>
-        <TextField
+    <Container
+      sx={{
+        mt: 8,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Form
+        title="Test Form"
+        onSubmit={onSubmit}
+        onReset={handleReset}
+        styles={{ maxWidth: "450px" }}
+        validateForm={validateForm}
+        to={ROUTES.SANDBOX}
+      >
+        <Input
           label="first name"
-          value={data.firstName}
-          name="firstName"
+          name="first"
+          data={data}
+          error={errors.first}
           onChange={handleChange}
-          helperText={errors.firstName}
-          error={Boolean(errors.firstName)}
         />
-        <TextField
+        <Input
           label="last name"
-          value={data.lastName}
-          name="lastName"
+          name="last"
+          data={data}
+          error={errors.last}
           onChange={handleChange}
-          helperText={errors.lastName}
-          error={Boolean(errors.lastName)}
         />
-        <Button onClick={onSubmit} disabled={!validateForm()}>
-          Submit
-        </Button>
-        <Button onClick={handleReset}>Reset</Button>
-      </Box>
-    </Box>
-  );}
+      </Form>
+    </Container>
+  );
+}

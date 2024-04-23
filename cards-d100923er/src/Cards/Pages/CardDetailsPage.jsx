@@ -10,7 +10,7 @@ import Error from "../../component/Error";
 
 export default function CardDetailsPage() {
     const { id } = useParams();
-    const { card, error, isLoading, getCardById } = useCards();
+    const { card, error, isLoading, getCardById} = useCards();
 
     useEffect(() => {
         getCardById(id);
