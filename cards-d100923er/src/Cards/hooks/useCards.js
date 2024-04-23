@@ -1,9 +1,10 @@
 import { useCallback, useState } from "react";
-import { getCards, getCard, createCard } from "../services/cardsApiServices";
+import { getCards, editCard, getCard, createCard } from "../services/cardsApiServices";
 import { useSnack } from "../../providers/SnackbarProvider";
 import ROUTES from "../../routes/routesModel";
 import { useNavigate } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
+import normalizeCard from "../helpers/normalization/normalizeCard";
 
 
 export default function useCards() {
@@ -12,7 +13,7 @@ export default function useCards() {
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const setSnack = useSnack();
-  const navigate =useNavigate();
+  const navigate = useNavigate();
 
   useAxios();
   // פונקציה שמביאה את כל הכרטיסים
@@ -22,12 +23,13 @@ export default function useCards() {
       setIsLoading(true)
       const data = await getCards();
       setCards(data);
+      setSnack("success", "All the cards are here");
 
     } catch (err) {
       setError(err.message)
     }
     setIsLoading(false)
-  }, []);
+  }, [setSnack]);
 
   // פונקציה שמביאה את הכרטיס לפי איידי ספציפי
   const getCardById = useCallback(async (id) => {
@@ -43,6 +45,24 @@ export default function useCards() {
     setIsLoading(false);
   }, []);
 
+  const handleUpdateCard = useCallback(
+    async (cardId, cardFromClient) => {
+      setIsLoading(true);
+
+      try {
+        const card = await editCard(cardId, normalizeCard(cardFromClient));
+        setCard(card);
+        setSnack("success", "The business card has been successfully updated");
+        setTimeout(() => {
+          navigate(ROUTES.ROOT);
+        }, 1000);
+      } catch (error) {
+        setError(error.message);
+      }
+      setIsLoading(false);
+    },
+    [setSnack, navigate]
+  );
   const handelCardsDelete = useCallback((id) => {
     console.log("you delete card no" + id);
   }, []);
@@ -56,7 +76,7 @@ export default function useCards() {
       setIsLoading(true);
 
       try {
-        const card = await createCard(cardFromClient);
+        const card = await createCard(normalizeCard(cardFromClient));
         setCard(card);
         setSnack("success", "A new business card has been created");
         setTimeout(() => {
@@ -73,5 +93,5 @@ export default function useCards() {
 
 
 
-  return { card, cards, error, isLoading, getAllCards, getCardById, handleCardLike, handelCardsDelete, handleCreateCard };
+  return { card, cards, error, isLoading, getAllCards, getCardById, handleCardLike, handelCardsDelete, handleCreateCard, handleUpdateCard };
 }

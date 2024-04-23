@@ -40,6 +40,6 @@ export default function SnackbarProvider({ children }) {
 
 export const useSnack = () => {
   const context = useContext(SnackbarContext);
-  if (!context) throw Error("useSnackbar must be used within a NameProvider");
+  if (!context) throw Error("use Snackbar must be used within a NameProvider");
   return context;
 };
