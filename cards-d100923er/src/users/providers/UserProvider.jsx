@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { getUser, getToken } from '../services/localStorageServices';
 
-export const UserContext = createContext();
+ const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const [user, setUser] = useState(null);

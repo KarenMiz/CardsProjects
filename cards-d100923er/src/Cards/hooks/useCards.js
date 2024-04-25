@@ -36,7 +36,7 @@ export default function useCards() {
     try {
       setError(null)
       setIsLoading(true)
-      const data = await getCard();
+      const data = await getCard(id);
       setCard(data);
     }
     catch (err) {
