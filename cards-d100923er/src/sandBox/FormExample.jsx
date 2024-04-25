@@ -8,11 +8,16 @@ import Input from "../forms/components/Input";
 const schema = {
   first: Joi.string().min(2),
   last: Joi.string().min(2).max(10),
+  email: Joi.string()
+  .ruleset.regex(/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/)
+  .rule({ message: 'user "mail" must be a valid mail' })
+  .required(),
 };
 
 const initialForm = {
   first: "",
   last: "",
+  email: "",
 };
 
 const handleSubmit = (data) => {
@@ -54,6 +59,15 @@ export default function FormExample() {
           error={errors.last}
           onChange={handleChange}
         />
+        <Input
+          label="email"
+          type="email"
+          name="email"
+          data={data}
+          error={errors.email}
+          onChange={handleChange}
+        />
+     
       </Form>
     </Container>
   );

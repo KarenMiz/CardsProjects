@@ -84,5 +84,6 @@ export default function useForm(initialForm, schema, handleSubmit) {
     validateForm,
     onSubmit,
     handleChangeCheckBox,
+    handleSubmit,
   };
 }

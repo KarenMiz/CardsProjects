@@ -12,7 +12,7 @@ import ROUTES from "../../../routes/routesModel";
 export default function CardComponent({ card, handelCardsDelete, handleCardLike }) {
   const navigate = useNavigate();
   return (<>
-    <Card sx={{ width: 250, m: 2 }}>
+    <Card sx={{ width: 250, m: 2, display: 'flex', flexDirection: 'column' }}>
       <CardActionArea
       onClick={() => navigate(ROUTES.CARD_INFO + "/" + card._id)}
       >
@@ -27,12 +27,14 @@ export default function CardComponent({ card, handelCardsDelete, handleCardLike 
         />
 
       </CardActionArea>
-      <CardActionBar
+      <div style={{ marginTop: 'auto' }}>
+      <CardActionBar 
         handleCardLike={handleCardLike}
         handelCardsDelete={handelCardsDelete}
         cardId={card._id}
         UserId={card.user_id}
       />
+      </div>
     </Card>
   </>
   );

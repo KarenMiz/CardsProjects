@@ -5,6 +5,8 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import CallIcon from "@mui/icons-material/Call";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useUser } from '../../../users/providers/UserProvider';
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../../routes/routesModel";
 
 export default function CardActionBar({
   handleCardLike,
@@ -13,14 +15,16 @@ export default function CardActionBar({
   userId,
 }) {
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const handleCardEdit = (id) => {
     console.log("navigate to edit page for card " + id);
+    navigate(ROUTES.EDIT_CARD + "/" + id);
   };
 
   return (
     <CardActions sx={{ paddingTop: 0, justifyContent: "space-between" }}>
-      <Box>
+      <Box >
         {user && (user.isAdmin || user._id === userId) ? (
           <>
             <IconButton onClick={() => handleCardDelete(cardId)}>
