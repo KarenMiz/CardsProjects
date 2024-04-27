@@ -1,20 +1,20 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import ROUTES from "../../routes/routesModel";
-import useCards from "../hooks/useCards";
-import useForm from "../../forms/hooks/useForm";
 import initialCardForm from "../helpers/initialForms/initialCardForm";
-import cardSchema from "../models/cardSchema";
 import { Container } from "@mui/material";
 import CardForm from "../Components/CardForm";
 import { useUser } from "../../users/providers/UserProvider";
+import useCards from "../hooks/useCards";
+import ROUTES from "../../routes/routesModel";
+import useForm from "../../forms/hooks/useForm";
+import cardSchema from "../models/cardSchema";
 
 
 export default function AddCardPage() {
   const { user } = useUser();
   const { handleCreateCard } = useCards();
 
-  const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
+  const { data, errors, handleChange, handleReset, validateForm, onSubmit } = 
     useForm(initialCardForm, cardSchema, handleCreateCard);
 
   if (!user) return <Navigate replace to={ROUTES.CARDS} />;

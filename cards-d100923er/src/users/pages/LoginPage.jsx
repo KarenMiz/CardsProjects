@@ -13,11 +13,6 @@ import { useUser } from "../providers/UserProvider";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { Button, Grid } from "@mui/material";
 
-
-
-
-
-
 export default function LoginPage() {
   const { handleLogin } = useUsers();
   const { user } = useUser();
