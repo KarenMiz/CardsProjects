@@ -23,7 +23,7 @@ export default function SnackbarProvider({ children }) {
       </SnackbarContext.Provider>
 
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: "buttom", horizontal: "right" }}
         open={isSnackOpen}
         onClose={() => {
           setOpenSnack(false);
