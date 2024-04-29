@@ -14,8 +14,9 @@ export default function AddCardPage() {
   const { user } = useUser();
   const { handleCreateCard } = useCards();
 
-  const { data, errors, handleChange, handleReset, validateForm, onSubmit } = 
-    useForm(initialCardForm, cardSchema, handleCreateCard);
+  const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
+    useForm(initialCardForm, cardSchema,handleCreateCard) 
+    
 
   if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 

@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
 
 export default function CardActionBar({
-  handleCardLike,
-  handleCardDelete,
+  handleCardsLike,
+  handelCardsDelete,
   cardId,
   userId,
 }) {
@@ -24,10 +24,10 @@ export default function CardActionBar({
 
   return (
     <CardActions sx={{ paddingTop: 0, justifyContent: "space-between" }}>
-      <Box >
+      <Box>
         {user && (user.isAdmin || user._id === userId) ? (
           <>
-            <IconButton onClick={() => handleCardDelete(cardId)}>
+            <IconButton onClick={() => handelCardsDelete(cardId)}>
               <DeleteIcon />
             </IconButton>
             <IconButton onClick={() => handleCardEdit(cardId)}>
@@ -41,10 +41,9 @@ export default function CardActionBar({
         <IconButton>
           <CallIcon />
         </IconButton>
-        <IconButton onClick={() => handleCardLike(cardId)}>
+        <IconButton onClick={() => handleCardsLike(cardId)}>
           <FavoriteIcon />
         </IconButton>
       </Box>
     </CardActions>
-  );
-}
+  );}

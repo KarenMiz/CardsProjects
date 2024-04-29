@@ -5,19 +5,20 @@ import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import useCards from "../hooks/useCards";
 import Spinner from "../../component/Spinner";
-import Error from "../../component/Error";
-
 
 export default function CardDetailsPage() {
     const { id } = useParams();
-    const { card, error, isLoading, getCardById} = useCards();
+    const { card, getCardById } = useCards();
 
     useEffect(() => {
         getCardById(id);
     }, [id, getCardById]);
 
-    if (isLoading) return <Spinner />
-    if (error) return <Error errorMessage={error} />;
+
+    if (!card) {
+        return <Spinner />;
+    }
+
     return (
         <Container>
             <PageHeader

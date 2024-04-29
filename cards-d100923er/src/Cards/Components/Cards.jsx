@@ -2,7 +2,7 @@ import CardComponent from './Card/CardComponent';
 import { Container } from '@mui/material';
 import React from 'react';
 
-export default function Cards({ cards, handelCardsDelete, handleCardLike }) {
+export default function Cards({ cards, handelCardsDelete, handleCardsLike }) {
   return (
     <Container sx={{ display: "flex", flexWrap: "wrap" }}>
       {cards.map((card) => (
@@ -10,7 +10,7 @@ export default function Cards({ cards, handelCardsDelete, handleCardLike }) {
           key={card._id}
           card={card}
           handelCardsDelete={handelCardsDelete}
-          handleCardLike={handleCardLike}
+          handleCardsLike={handleCardsLike}
         />
       ))}
     </Container>

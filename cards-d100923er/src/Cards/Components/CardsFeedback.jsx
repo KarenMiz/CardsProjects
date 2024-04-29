@@ -1,11 +1,9 @@
 import React from 'react'
-import Spinner from '../../component/Spinner'
-import Error from '../../component/Error'
 import { Typography } from '@mui/material'
 import Cards from './Cards'
-
-
-export default function CardsFeedback({ handelCardsDelete, handleCardLike, error, cards, isLoading }) {
+import Spinner from '../../component/Spinner'
+import Error from '../../component/Error'
+export default function CardsFeedback({ handelCardsDelete, handleCardsLike, error, cards, isLoading }) {
   if (isLoading) return <Spinner />
   if (error) return <Error errorMessage={error} />
   if (cards && cards.length === 0) {
@@ -16,7 +14,13 @@ export default function CardsFeedback({ handelCardsDelete, handleCardLike, error
     );
   }
   if (cards) {
-    return <Cards cards={cards} handleCardLike={handleCardLike} handelCardsDelete={handelCardsDelete} />;
+    return (
+    <Cards
+     cards={cards} 
+     handleCardsLike={handleCardsLike}
+     handelCardsDelete={handelCardsDelete} 
+      />
+    );
   }
   return null;
 }

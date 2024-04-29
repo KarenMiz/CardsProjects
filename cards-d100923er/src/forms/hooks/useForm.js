@@ -79,11 +79,11 @@ export default function useForm(initialForm, schema, handleSubmit) {
   return {
     data,
     errors,
+    setData,
     handleChange,
     handleReset,
     validateForm,
     onSubmit,
     handleChangeCheckBox,
-    handleSubmit,
   };
 }

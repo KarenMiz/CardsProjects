@@ -8,7 +8,6 @@ export default function useAxios() {
   const setSnack = useSnack();
 
   useEffect(() => {
-
     axios.defaults.headers.common["x-auth-token"] = token;
 
     const requestInterceptor = axios.interceptors.request.use((data) => {

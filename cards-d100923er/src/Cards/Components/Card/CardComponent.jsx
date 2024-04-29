@@ -9,7 +9,7 @@ import ROUTES from "../../../routes/routesModel";
 
 
 
-export default function CardComponent({ card, handelCardsDelete, handleCardLike }) {
+export default function CardComponent({ card, handelCardsDelete, handleCardsLike }) {
   const navigate = useNavigate();
   return (<>
     <Card sx={{ width: 250, m: 2, display: 'flex', flexDirection: 'column' }}>
@@ -29,7 +29,7 @@ export default function CardComponent({ card, handelCardsDelete, handleCardLike 
       </CardActionArea>
       <div style={{ marginTop: 'auto' }}>
       <CardActionBar 
-        handleCardLike={handleCardLike}
+        handleCardsLike={handleCardsLike}
         handelCardsDelete={handelCardsDelete}
         cardId={card._id}
         UserId={card.user_id}
