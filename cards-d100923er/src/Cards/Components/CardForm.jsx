@@ -14,12 +14,12 @@ const CardForm = ({
 }) => {
   return (
     <Form
+      title={title}
       onSubmit={onSubmit}
       onReset={onReset}
       errors={errors}
       validateForm={validateForm}
       styles={{ maxWidth: "800px" }}
-      title={title}
       to={ROUTES.ROOT}
     >
       <Input

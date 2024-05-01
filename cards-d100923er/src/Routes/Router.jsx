@@ -27,7 +27,7 @@ export default function Router() {
         <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route path={ROUTES.CREATE_CARD} element={<AddCardPage/>} />
-        <Route path={ROUTES.LOGIN} element={<EditCardPage/>} />
+        <Route path={ROUTES.EDIT_CARD} element={<EditCardPage/>} />
         <Route path={ROUTES.SANDBOX} element={<SandBox />}>
           <Route path="counter" element={<Counter />} />
           <Route path="countreis" element={<Countries />} />
