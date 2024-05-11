@@ -10,7 +10,7 @@ import ROUTES from "../../../routes/routesModel";
 
 export default function CardActionBar({
   handleCardsLike,
-  handelCardsDelete,
+  handleCardsDelete,
   cardId,
   userId,
 }) {
@@ -25,25 +25,30 @@ export default function CardActionBar({
   return (
     <CardActions sx={{ paddingTop: 0, justifyContent: "space-between" }}>
       <Box>
-        {user && (user.isAdmin || user._id === userId) ? (
-          <>
-            <IconButton onClick={() => handelCardsDelete(cardId)}>
-              <DeleteIcon />
-            </IconButton>
-            <IconButton onClick={() => handleCardEdit(cardId)}>
-              <ModeEditIcon />
-            </IconButton>
-          </>
-        ) : null}
+      {user && (user.isAdmin || user._id === userId) ? (
+        <>
+          <IconButton onClick={() => handleCardsDelete(cardId)}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton onClick={() => handleCardEdit(cardId)}>
+            <ModeEditIcon />
+          </IconButton>
+        </>
+      ) : null}
       </Box>
 
       <Box>
-        <IconButton>
-          <CallIcon />
-        </IconButton>
-        <IconButton onClick={() => handleCardsLike(cardId)}>
-          <FavoriteIcon />
-        </IconButton>
+
+        <>
+          <IconButton>
+            <CallIcon />
+          </IconButton>
+          <IconButton onClick={() => handleCardsLike(cardId)}>
+            <FavoriteIcon />
+          </IconButton>
+        </>
+
       </Box>
     </CardActions>
-  );}
+  );
+}

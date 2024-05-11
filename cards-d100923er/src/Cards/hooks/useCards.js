@@ -16,6 +16,7 @@ export default function useCards() {
   const setSnack = useSnack();
 
   useAxios();
+  
   const getAllCards = useCallback(async () => {
     try {
       setError(null);

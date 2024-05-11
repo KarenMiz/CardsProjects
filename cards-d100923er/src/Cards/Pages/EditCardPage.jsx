@@ -28,11 +28,12 @@ export default function EditCardPage() {
   //useEffect - update the form data to this card data
   useEffect(() => {
     getCardById(id).then((data) => {
-      const modelCard = mapCardToModel(data);
-      setData(modelCard);
+      if (data) {
+        const modelCard = mapCardToModel(data);
+        setData(modelCard);
+      }
     });
   }, [getCardById, setData, id]);
-
   if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (

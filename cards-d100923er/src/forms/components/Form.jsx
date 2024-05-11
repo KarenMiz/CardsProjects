@@ -29,7 +29,7 @@ const Form = ({
       noValidate
     >
       <Typography align="center" variant="h5" component="h1" mb={2}>
-        {title.toUpperCase()}
+      {title.toUpperCase()}
       </Typography>
 
       <Grid container spacing={spacing}>

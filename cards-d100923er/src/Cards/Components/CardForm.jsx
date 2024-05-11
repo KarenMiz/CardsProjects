@@ -4,13 +4,14 @@ import Input from "../../forms/components/Input";
 import ROUTES from "../../routes/routesModel";
 
 const CardForm = ({
+  title,
   onSubmit,
   onReset,
   errors,
   validateForm,
   onInputChange,
   data,
-  title,
+
 }) => {
   return (
     <Form

@@ -9,15 +9,15 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
-import normalizeUser from "../normalization/normalizeUser";
+import normalizeUser from "../helpers/normalization/normalizeUser";
 
 
 const useUsers = () => {
     const [isLoading, setIsLoading] = useState();
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const {  setUser, setToken } = useUser();
- 
+    const { user, setUser, setToken } = useUser();
+
     const handleLogin = useCallback(
         async (userLogin) => {
             setIsLoading(true);
@@ -58,7 +58,7 @@ const useUsers = () => {
         [handleLogin]
     );
 
-    return { isLoading, error, handleLogin, handleLogout, handleSignup };
+    return { user, isLoading, error, handleLogin, handleLogout, handleSignup };
 };
 
 export default useUsers;

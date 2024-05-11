@@ -28,7 +28,7 @@ export default function CardDetailsPage() {
             <Typography>details of card {id}</Typography>
             <Typography>details of card {card.title}</Typography>
             <Typography>description of card {card.description}</Typography>
-            <img src={card.image.url} alt="Something Nice" />
+            <img src={card.image.url} alt={card.image.alt}/>
         </Container>
     );
 }

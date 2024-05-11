@@ -13,7 +13,7 @@ export const getCards = async () => {
 
 export const getCard = async (cardId) => {
   try {
-    const response = await axios.get(`${apiUrl}/${cardId}`);
+    const response = await axios.get(apiUrl + "/" + cardId);
     const data = response.data;
     return data;
   } catch (err) {

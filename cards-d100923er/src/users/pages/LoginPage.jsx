@@ -15,9 +15,9 @@ import { Button, Grid } from "@mui/material";
 
 export default function LoginPage() {
   const { handleLogin } = useUsers();
-  const { user } = useUser();
   const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
     useForm(initialLoginForm, loginSchema, handleLogin);
+    const { user } = useUser();
 
   if (user) return <Navigate to={ROUTES.ROOT} replace />
   return (

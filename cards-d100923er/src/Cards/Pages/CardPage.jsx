@@ -25,7 +25,7 @@ export default function CardPage() {
     <CardsFeedback
       cards={cards}
       handleCardsLike={handleCardsLike}
-      handelCardsDelete={handleCardsDelete}
+      handleCardsDelete={handleCardsDelete}
       isLoading={isLoading}
       error={error}
     />)}
