@@ -12,7 +12,7 @@ export default function NavBar() {
       <AppBar  position="sticky" elevation={10}>
         <Toolbar sx={{justifyContent: "space-between"}}>
           <LeftNavBar />
-          <RightNavBar />
+          <RightNavBar  />
         </Toolbar>
       </AppBar>
     </MenuProvider>

@@ -4,7 +4,7 @@ import initialSignupForm from "../helpers/initialForms/initialSignupForm";
 import signupSchema from "../models/signupSchema";
 import Container from "@mui/material/Container";
 import SignupForm from "../components/SignupForm";
-import useUsers from "../hooks/useUser";
+import useUsers from "../hooks/useUsers";
 import { useUser } from "../providers/UserProvider";
 import { Navigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";

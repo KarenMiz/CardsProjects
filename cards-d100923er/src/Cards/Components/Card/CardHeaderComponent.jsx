@@ -6,7 +6,7 @@ export default function CardHeaderComponent({image}) {
         <CardMedia
             component="img"
             height="140"
-            width="200"
+            width="20"
             image={image.url}
             alt={image.alt}>
                 

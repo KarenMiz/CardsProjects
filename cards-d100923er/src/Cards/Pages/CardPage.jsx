@@ -6,7 +6,8 @@ import AddNewCardButton from '../Components/AddNewCardButton';
 
 
 export default function CardPage() {
-  const { cards, error,isLoading,  getAllCards,handleCardsLike, handleCardsDelete,  } = useCards();
+  const {  value, getAllCards,handleCardsLike, handleCardsDelete,  } = useCards();
+  const {isLoading, cards, error,} =value;
   useEffect(() => {
     getAllCards();
   }, [getAllCards]);

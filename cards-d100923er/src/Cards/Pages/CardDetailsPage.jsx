@@ -8,8 +8,8 @@ import Spinner from "../../component/Spinner";
 
 export default function CardDetailsPage() {
     const { id } = useParams();
-    const { card, getCardById } = useCards();
-
+    const {value,getCardById } = useCards();
+    const {card} = value;
     useEffect(() => {
         getCardById(id);
     }, [id, getCardById]);

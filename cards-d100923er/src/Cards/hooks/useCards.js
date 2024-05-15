@@ -1,21 +1,46 @@
-import { useCallback, useState } from "react";
-import { getCards, editCard, getCard, createCard } from "../services/cardsApiServices";
+import { useCallback, useEffect,  useMemo,  useState } from "react";
+import { getCards, getMyCards, editCard, getCard, createCard, deleteCard, changeLikeStatus } from "../services/cardsApiServices";
 import ROUTES from "../../routes/routesModel";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import { useSnack } from "../../providers/SnackbarProvider";
 import normalizeCard from "../helpers/normalization/normalizeCard";
+import { useUser } from "../../users/providers/UserProvider";
 
 
 export default function useCards() {
   const [card, setCard] = useState(null);
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const setSnack = useSnack();
-
+  const [filterCard, setFilterCard] = useState(null);
+  const [query, setQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const { user } = useUser();
   useAxios();
+
+  useEffect(() => {
+    setQuery(searchParams.get("q") ?? "");
+  }, [searchParams]);
+  useEffect(() => {
+    if (cards)
+      setFilterCard(
+        cards.filter(
+          (card) =>
+            card.title.includes(query) || String(card.bizNumber).includes(query)
+        )
+      );
+  }, [cards, query]);
+  const requestStatus = (loading, errorMessage, cards, card = null) => {
+    setIsLoading(loading);
+    setError(errorMessage);
+    setCards(cards);
+    setCard(card);
+  };
+
+
   
   const getAllCards = useCallback(async () => {
     try {
@@ -47,7 +72,6 @@ export default function useCards() {
     async (cardFromClient) => {
       setError(null);
       setIsLoading(true);
-
       try {
         const card = await createCard(normalizeCard(cardFromClient));
         setCard(card);
@@ -82,15 +106,42 @@ export default function useCards() {
     [setSnack, navigate]
   );
 
-  const handleCardsDelete = useCallback((id) => {
-    console.log("you deleted card no" + id);
-  }, []);
+  const handleCardsDelete = useCallback(async (id) => {
+    setIsLoading(true);
+    try {
+      const cards = await deleteCard(id)
+      setCards(cards)
+      setSnack("success", "The business card has been successfully Delete");
+      setTimeout(() => {
+        navigate(ROUTES.ROOT);
+      }, 1000);
+    } catch (error) {
+      setError(error.message);
+    }
+    setIsLoading(false);
+  },
+    [setSnack, navigate]
+  );
 
-  const handleCardsLike = useCallback((id) => {
-    console.log("you liked card no" + id);
-  }, []);
+  const handleCardsLike = useCallback(
+    async (cardId) => {
+      try {
+        await changeLikeStatus(cardId);
+        setSnack("success", "The business card has been Liked");
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    },
+    [setSnack]
+  );
+  
 
 
 
-  return { cards, card, error, isLoading, getAllCards, getCardById, handleCardsDelete, handleCardsLike, handleCreateCard, handleUpdateCard };
+  const value = useMemo(() => {
+    return { isLoading, cards, card, error, filterCard };
+  }, [isLoading, cards, card, error, filterCard]);
+
+  return {value,cards, card, error, isLoading, filterCard,  user, query, requestStatus, getAllCards, getCardById, handleCardsDelete, handleCardsLike, handleCreateCard, handleUpdateCard };
 }
+//cards, card, error, isLoading, filterCard,

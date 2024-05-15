@@ -29,7 +29,9 @@ export default function CardComponent({ card, handleCardsDelete, handleCardsLike
         handleCardsLike={handleCardsLike}
         handleCardsDelete={handleCardsDelete}
         cardId={card._id}
-        UserId={card.user_id}
+        userId={card.user_id}
+        likes={card.likes}
+        phone={card.phone}
       />
       </div>
     </Card>

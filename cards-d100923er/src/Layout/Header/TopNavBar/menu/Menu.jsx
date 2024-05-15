@@ -2,7 +2,7 @@ import MuiMenu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import { useUser } from "../../../../users/providers/UserProvider";
-import useUsers from "../../../../users/hooks/useUser";
+import useUsers from "../../../../users/hooks/useUsers";
 import MenuLink from "../../../../routes/components/MenuLink";
 import ROUTES from "../../../../routes/routesModel";
 

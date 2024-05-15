@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useUser } from "../providers/UserProvider";
-import { login, signup } from "../services/uesersApiService";
+import { getUserData, login, signup } from "../services/uesersApiService";
 import {
     getUser,
     removeToken,
@@ -16,7 +16,7 @@ const useUsers = () => {
     const [isLoading, setIsLoading] = useState();
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const { user, setUser, setToken } = useUser();
+    const {  setUser, setToken } = useUser();
 
     const handleLogin = useCallback(
         async (userLogin) => {
@@ -44,8 +44,8 @@ const useUsers = () => {
         async (userFromClient) => {
             setIsLoading(true);
             try {
-                const normalizedUser = normalizeUser(userFromClient);
-                await signup(normalizedUser);
+                const normalizedUser  = normalizeUser(userFromClient);
+                await signup(normalizedUser );
                 await handleLogin({
                     email: userFromClient.email,
                     password: userFromClient.password,
@@ -58,7 +58,19 @@ const useUsers = () => {
         [handleLogin]
     );
 
-    return { user, isLoading, error, handleLogin, handleLogout, handleSignup };
+    const handleGetUser = useCallback(async (id) => {
+        try {
+          const userData = await getUserData(id);
+          setIsLoading(false);
+          setError(null);
+          return userData;
+        } catch (error) {
+          setIsLoading(false);
+          setError(error);
+        }
+      }, []);
+
+    return {  isLoading, error, handleLogin, handleLogout, handleSignup,handleGetUser };
 };
 
 export default useUsers;

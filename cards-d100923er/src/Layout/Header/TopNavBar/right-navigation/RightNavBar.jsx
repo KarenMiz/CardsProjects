@@ -6,6 +6,7 @@ import { useUser } from "../../../../users/providers/UserProvider";
 import { useTheme } from "../../../../providers/CustomThemeProvider";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import SearchBar from "./SearchBar";
 
 export default function RightNavBar() {
   const { user } = useUser();
@@ -18,6 +19,7 @@ export default function RightNavBar() {
           alignItems: "center",
         }}
       >
+        <SearchBar/>
         <IconButton sx={{ml: 1}} onClick={toggleDarkMode}>
         {isDark? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>

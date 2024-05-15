@@ -12,7 +12,8 @@ import cardSchema from "../models/cardSchema";
 
 export default function EditCardPage() {
   const { id } = useParams();
-  const { handleUpdateCard, getCardById, card } = useCards();
+  const { handleUpdateCard, getCardById,   value,} = useCards();
+  const { card } = value;
   const { user } = useUser();
   const {
     data,
@@ -22,18 +23,18 @@ export default function EditCardPage() {
     handleReset,
     validateForm,
     onSubmit,
-  } = useForm(initialCardForm, cardSchema, (newCard) =>
-    handleUpdateCard(card._id, newCard)
-  );
+  } = useForm(initialCardForm, cardSchema,  (newCard) =>
+  handleUpdateCard(card._id, newCard)
+);
+  
   //useEffect - update the form data to this card data
   useEffect(() => {
     getCardById(id).then((data) => {
-      if (data) {
         const modelCard = mapCardToModel(data);
-        setData(modelCard);
-      }
-    });
-  }, [getCardById, setData, id]);
+        setData(modelCard)
+      });
+    }, [getCardById, setData, id]);
+  
   if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (

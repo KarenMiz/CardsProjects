@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const apiUrl = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users";
 
 export const login = async (userLogin) => {

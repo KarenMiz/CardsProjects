@@ -7,8 +7,8 @@ import Form from "../../forms/components/Form";
 import ROUTES from "../../routes/routesModel";
 import Input from "../../forms/components/Input";
 import PageHeader from "../../component/PageHeader";
-import { Navigate,Link  } from "react-router-dom";
-import useUsers from "../hooks/useUser";
+import { Navigate, Link } from "react-router-dom";
+import useUsers from "../hooks/useUsers";
 import { useUser } from "../providers/UserProvider";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { Button, Grid } from "@mui/material";
@@ -17,7 +17,7 @@ export default function LoginPage() {
   const { handleLogin } = useUsers();
   const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
     useForm(initialLoginForm, loginSchema, handleLogin);
-    const { user } = useUser();
+  const { user } = useUser();
 
   if (user) return <Navigate to={ROUTES.ROOT} replace />
   return (
@@ -58,7 +58,7 @@ export default function LoginPage() {
             onChange={handleChange}
             data={data}
           />
-            <Grid item xs={12}>
+          <Grid item xs={12}>
             <Button
               variant="outlined"
               component={Link}
