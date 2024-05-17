@@ -67,6 +67,7 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
               navigateTo={ROUTES.EDIT_USER}
               onClick={onClose}
             />
+            
             <MenuItem onClick={onLogout}>Logout</MenuItem>
           </>
         )}

@@ -10,7 +10,6 @@ export default function Profile() {
     const { handleGetUser } = useUsers();
     const { user } = useUser();
     const [userFullData, setUserFullData] = useState(null);
-
     useEffect(() => {
         if (user) {
             const getUser = async () => {

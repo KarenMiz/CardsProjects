@@ -1,4 +1,5 @@
-const normalizeUser = (user) => ({
+const normalizeUser = (user) => {
+  return {
   name: {
     first: user.first,
     middle: user.middle,
@@ -20,6 +21,7 @@ const normalizeUser = (user) => ({
     alt: user.alt,
   },
   isBusiness: user.isBusiness,
-});
+}
+};
 
 export default normalizeUser;

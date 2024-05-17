@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useUser } from "../providers/UserProvider";
-import { getUserData, login, signup } from "../services/uesersApiService";
+import { editUser, getUserData, login, signup } from "../services/uesersApiService";
 import {
     getUser,
     removeToken,
@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import normalizeUser from "../helpers/normalization/normalizeUser";
+import { useSnack } from "../../providers/SnackbarProvider";
 
 
 const useUsers = () => {
@@ -17,6 +18,7 @@ const useUsers = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const {  setUser, setToken } = useUser();
+    const setSnack = useSnack();
 
     const handleLogin = useCallback(
         async (userLogin) => {
@@ -70,7 +72,28 @@ const useUsers = () => {
         }
       }, []);
 
-    return {  isLoading, error, handleLogin, handleLogout, handleSignup,handleGetUser };
+
+      const handleUpdateUser = useCallback(
+        async (cardId, cardFromClient) => {
+          setIsLoading(true);
+    
+          try {
+            const userData = await editUser(cardId, normalizeUser(cardFromClient));
+            setUser(getUser());
+            setSnack("success", "The business card has been successfully updated");
+            setTimeout(() => {
+              navigate(ROUTES.ROOT);
+            }, 1000);
+            return userData;
+          } catch (error) {
+            setError(error.message);
+          }
+          setIsLoading(false);
+        },
+        [setSnack, navigate]
+      );
+
+    return {  isLoading, error, handleLogin, handleLogout, handleSignup,handleGetUser,handleUpdateUser };
 };
 
 export default useUsers;
