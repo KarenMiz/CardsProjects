@@ -33,14 +33,13 @@ export default function useCards() {
         )
       );
   }, [cards, query]);
+  
   const requestStatus = (loading, errorMessage, cards, card = null) => {
     setIsLoading(loading);
     setError(errorMessage);
     setCards(cards);
     setCard(card);
   };
-
-
   
   const getAllCards = useCallback(async () => {
     try {

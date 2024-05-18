@@ -7,7 +7,7 @@ import AddNewCardButton from '../Components/AddNewCardButton';
 
 export default function CardPage() {
   const {  value, getAllCards,handleCardsLike, handleCardsDelete,  } = useCards();
-  const {isLoading, cards, error,} =value;
+  const {isLoading, cards, error,filterCard} =value;
   useEffect(() => {
     getAllCards();
   }, [getAllCards]);
@@ -24,7 +24,7 @@ export default function CardPage() {
         <p>Loading...</p>
       ) : (
     <CardsFeedback
-      cards={cards}
+      cards={filterCard}
       handleCardsLike={handleCardsLike}
       handleCardsDelete={handleCardsDelete}
       isLoading={isLoading}

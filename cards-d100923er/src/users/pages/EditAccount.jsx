@@ -35,7 +35,8 @@ export default function EditAccount() {
                 setData(modelUser);
             });
     }, [getCardById, setData, id]);
-
+    
+console.log(data);
 
     if (!user) return <Navigate replace to={ROUTES.CARDS} />;
     return (
