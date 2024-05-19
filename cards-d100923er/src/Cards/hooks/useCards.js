@@ -122,29 +122,15 @@ export default function useCards() {
     [setSnack, navigate]
   );
 
-  // const handleCardsLike = useCallback(
-  //   async (cardId) => {
-  //     try {
-  //       await changeLikeStatus(cardId);
-  //       setSnack("success", "The business card has been Liked");
-  //     } catch (error) {
-  //       requestStatus(false, error, null);
-  //     }
-  //   },
-  //   [setSnack]
-  // );
+
 
   const handleCardsLike = useCallback(
     async (cardId) => {
       try {
-        // Change the like status on the server
         const updatedCard = await changeLikeStatus(cardId);
-        
-        // Update the local state with the updated card
         setCards((prevCards) =>
           prevCards.map((card) => (card._id === cardId ? updatedCard : card))
         );
-        
         setSnack("success", "The business card has been liked/unliked");
       } catch (error) {
         requestStatus(false, error, null);
