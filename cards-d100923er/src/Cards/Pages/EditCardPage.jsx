@@ -35,7 +35,7 @@ export default function EditCardPage() {
       });
     }, [getCardById, setData, id]);
     
-    console.log(id);
+    console.log(data);
   if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (

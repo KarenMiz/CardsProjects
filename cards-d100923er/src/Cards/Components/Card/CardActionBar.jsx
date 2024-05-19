@@ -18,20 +18,21 @@ export default function CardActionBar({
   likes,
   phone,
 }) {
-  
+
   const { user } = useUser();
   const [isDialogOpen, setDialog] = useState(false);
   const [isLiked, setIsLiked] = useState(() => likes && likes.includes(user?.userId));
   const navigate = useNavigate();
+  
   const handleDelete = async () => {
     await handleCardsDelete(cardId);
     setDialog(false);
   };
-  
+
   const handleLike = async () => {
-      await handleCardsLike(cardId);
-      setIsLiked((prev) => !prev);
-    
+    await handleCardsLike(cardId);
+    setIsLiked((prev) => !prev);
+   
   }
 
   const handleCardEdit = (id) => {
@@ -51,7 +52,7 @@ export default function CardActionBar({
               >
                 <DeleteIcon />
               </IconButton>
-              <IconButton onClick={()=> handleCardEdit(cardId)}>
+              <IconButton onClick={() => handleCardEdit(cardId)}>
                 <ModeEditIcon />
               </IconButton>
             </>
@@ -65,7 +66,7 @@ export default function CardActionBar({
             </IconButton>
           </a>
           {user && (
-            <IconButton aria-label="Add to favorite" onClick={()=> handleLike}>
+            <IconButton aria-label="Add to favorite" onClick={handleLike}>
               <FavoriteIcon color={isLiked ? "error" : "inherit"} />
             </IconButton>
           )}

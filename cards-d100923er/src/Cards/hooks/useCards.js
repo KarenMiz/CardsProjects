@@ -122,11 +122,30 @@ export default function useCards() {
     [setSnack, navigate]
   );
 
+  // const handleCardsLike = useCallback(
+  //   async (cardId) => {
+  //     try {
+  //       await changeLikeStatus(cardId);
+  //       setSnack("success", "The business card has been Liked");
+  //     } catch (error) {
+  //       requestStatus(false, error, null);
+  //     }
+  //   },
+  //   [setSnack]
+  // );
+
   const handleCardsLike = useCallback(
     async (cardId) => {
       try {
-        await changeLikeStatus(cardId);
-        setSnack("success", "The business card has been Liked");
+        // Change the like status on the server
+        const updatedCard = await changeLikeStatus(cardId);
+        
+        // Update the local state with the updated card
+        setCards((prevCards) =>
+          prevCards.map((card) => (card._id === cardId ? updatedCard : card))
+        );
+        
+        setSnack("success", "The business card has been liked/unliked");
       } catch (error) {
         requestStatus(false, error, null);
       }
@@ -134,13 +153,33 @@ export default function useCards() {
     [setSnack]
   );
   
-
-
+  
+  const handleGetFavCards = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const cards = await getCards();
+      const favCards = cards.filter((card) => card.likes.includes(user.id));
+      requestStatus(false, null, favCards);
+    } catch (error) {
+      requestStatus(false, error, null);
+    }
+  }, [user]);
+  
+  
+  const handleGetMyCards = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const cards = await getMyCards();
+      requestStatus(false, null, cards);
+    } catch (error) {
+      requestStatus(false, error, null);
+    }
+  }, []);
+  
 
   const value = useMemo(() => {
     return { isLoading, cards, card, error, filterCard };
   }, [isLoading, cards, card, error, filterCard]);
 
-  return {value,cards, card, error, isLoading, filterCard,  user, query, requestStatus, getAllCards, getCardById, handleCardsDelete, handleCardsLike, handleCreateCard, handleUpdateCard };
+  return {value,cards, card, error, isLoading, filterCard,  user, query, requestStatus, getAllCards, getCardById, handleCardsDelete, handleCardsLike, handleCreateCard, handleUpdateCard, handleGetFavCards,handleGetMyCards };
 }
-//cards, card, error, isLoading, filterCard,

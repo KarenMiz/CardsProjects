@@ -10,6 +10,7 @@ export default function CardsFeedback({
   handleCardsDelete,
   handleCardsLike,
 }) {
+  
   if (isLoading) return <Spinner />
   if (error) return <Error errorMessage={error} />
   if (cards && cards.length === 0) {

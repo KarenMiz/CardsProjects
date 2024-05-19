@@ -17,7 +17,7 @@ import AddCardPage from '../Cards/Pages/AddCardPage'
 import EditCardPage from '../Cards/Pages/EditCardPage'
 import Profile from '../users/pages/Profile'
 import EditAccount from '../users/pages/EditAccount'
-
+import FavCards from '../Cards/Pages/FavCards'
 export default function Router() {
   return (
     <div>
@@ -32,6 +32,7 @@ export default function Router() {
         <Route path={ROUTES.EDIT_CARD + "/:id"} element={<EditCardPage />} />
         <Route path={ROUTES.USER_PROFILE} element={<Profile />} />
         <Route path={ROUTES.EDIT_USER  } element={<EditAccount />} />
+        <Route path={ROUTES.FAV_CARDS} element={<FavCards/>} />
 
         <Route path={ROUTES.SANDBOX} element={<SandBox />}>
           <Route path="counter" element={<Counter />} />

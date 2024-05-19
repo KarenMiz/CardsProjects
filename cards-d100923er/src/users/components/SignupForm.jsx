@@ -3,23 +3,23 @@ import Form from "../../forms/components/Form";
 import ROUTES from "../../routes/routesModel";
 import Input from "../../forms/components/Input";
 import { Grid, FormControlLabel, Checkbox } from "@mui/material";
-
-export default function SignupForm({
+const SignupForm= ({
+  title,
   onSubmit,
   onReset,
   validateForm,
-  title,
   errors,
   data,
   onInputChange,
   handleChangeCheckBox,
-}) {
+})=> {
   return (
     <Form
+      title={title}
       onSubmit={onSubmit}
       onReset={onReset}
+      errors={errors}
       validateForm={validateForm}
-      title={title}
       styles={{ maxWidth: "800px" }}
       to={ROUTES.ROOT}
     >
@@ -155,3 +155,5 @@ export default function SignupForm({
     </Form>
   );
 }
+export default React.memo(SignupForm);
+

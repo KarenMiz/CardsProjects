@@ -57,7 +57,7 @@ console.log(data);
                     validateForm={validateForm}
                     onInputChange={handleChange}
                     data={data}
-                    // onChange={handleChangeCheckBox}
+                     onChange={handleChangeCheckBox}
                 />
             )}
         </Container>
