@@ -21,9 +21,9 @@ export default function CardActionBar({
 
   const { user } = useUser();
   const [isDialogOpen, setDialog] = useState(false);
-  const [isLiked, setIsLiked] = useState(() => likes && likes.includes(user?.userId));
+  const [isLiked, setIsLiked] = useState(() => likes && likes.includes(user?.user._id));
   const navigate = useNavigate();
-  
+
   const handleDelete = async () => {
     await handleCardsDelete(cardId);
     setDialog(false);
@@ -32,7 +32,7 @@ export default function CardActionBar({
   const handleLike = async () => {
     await handleCardsLike(cardId);
     setIsLiked((prev) => !prev);
-   
+
   }
 
   const handleCardEdit = (id) => {

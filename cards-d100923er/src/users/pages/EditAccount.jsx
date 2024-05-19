@@ -24,9 +24,13 @@ export default function EditAccount() {
         validateForm,
         onSubmit,
         handleChangeCheckBox,
-    } = useForm(initialSignupForm, signupSchema, (newCard) =>
-     handleUpdateCard(card._id, newCard)
+    } = useForm(card, signupSchema, (card) =>
+     handleUpdateCard(card)
     );
+    console.log(id);
+    console.log(user);
+    console.log(card);
+    console.log();
 
     useEffect(() => {
         getCardById(id)
