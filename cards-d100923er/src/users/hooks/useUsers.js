@@ -9,13 +9,14 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
-import normalizeUser from "../helpers/normalization/normalizeUser";
+import normalizEditForUser from "../helpers/normalization/normalizEditForUser";
 import { useSnack } from "../../providers/SnackbarProvider";
+import normalizeUser from "../helpers/normalization/normalizeUser";
 
 
 const useUsers = () => {
   const [isLoading, setIsLoading] = useState();
-
+  const [userDeatails, setUserD] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { user, setUser, setToken } = useUser();
@@ -79,8 +80,7 @@ const useUsers = () => {
       setIsLoading(true);
 
       try {
-        const user = await editUser(userid, normalizeUser(userFromClient));
-        setUser(user);
+        await editUser(userid, normalizEditForUser(userFromClient));
         setSnack("success", "The business card has been successfully updated");
         setTimeout(() => {
           navigate(ROUTES.ROOT);
@@ -90,10 +90,10 @@ const useUsers = () => {
       }
       setIsLoading(false);
     },
-    [setSnack, navigate]
+    [setSnack, navigate, setUser]
   );
 
-  return { isLoading, error, user, handleLogin, handleLogout, handleSignup, handleGetUser, handleUpdateUser };
+  return { isLoading, error, userDeatails, handleLogin, handleLogout, handleSignup, handleGetUser, handleUpdateUser };
 };
 
 export default useUsers;

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import useCards from '../../Cards/hooks/useCards';
 import { useUser } from '../providers/UserProvider';
 import useForm from '../../forms/hooks/useForm';
 import ROUTES from '../../routes/routesModel';
@@ -9,36 +8,37 @@ import SignupForm from '../../users/components/SignupForm';
 import signupSchema from '../models/signupSchema';
 import mapUserToModel from '../helpers/normalization/mapUserToModel';
 import useUsers from '../hooks/useUsers';
-import initialSignupForm from '../helpers/initialForms/initialSignupForm';
 import normalizeUser from '../helpers/normalization/normalizeUser';
+import userEditSchema from '../models/userEditSchema';
+import initialSignupForm from '../helpers/initialForms/initialSignupForm';
+import UserEditForm from '../components/UserEditForm';
 
 export default function EditAccount() {
-    const { id } = useParams();
     const { handleUpdateUser, handleGetUser, } = useUsers();
     const { user } = useUser();
     const {
         data,
         errors,
-        setData,
         handleChange,
         handleReset,
         validateForm,
         onSubmit,
         handleChangeCheckBox,
-    } = useForm(user._id, normalizeUser, (data) =>
-        handleUpdateUser(data)
+        setData,
+    } = useForm(initialSignupForm, userEditSchema, (userDeatails) =>
+        handleUpdateUser(user._id, userDeatails)
     );
 
-
+    console.log(user._id);
     useEffect(() => {
-        handleGetUser(id)
-            .then((data) => {
-                const modelUser = mapUserToModel(data);
-                setData(modelUser);
-            });
-    }, [handleGetUser, setData, id]);
+        if (user)
+            handleGetUser(user._id)
+                .then((userDeatails) => {
+                    const modelUser = mapUserToModel(userDeatails);
+                    setData(modelUser);
+                });
+    }, [handleGetUser, user]);
 
-    console.log();
 
     if (!user) return <Navigate replace to={ROUTES.CARDS} />;
     return (
@@ -51,7 +51,7 @@ export default function EditAccount() {
             }}
         >
             {data && (
-                <SignupForm
+                <UserEditForm
                     title="Edit Account"
                     onSubmit={onSubmit}
                     onReset={handleReset}
