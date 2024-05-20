@@ -59,7 +59,7 @@ const UserEditForm = ({
             />
 
             <Input
-                name="url"
+                name="imageUrl"
                 label="image url"
                 error={errors.url}
                 onChange={onInputChange}
@@ -68,7 +68,7 @@ const UserEditForm = ({
                 required={false}
             />
             <Input
-                name="alt"
+                name="imageAlt"
                 label="image alt"
                 error={errors.alt}
                 onChange={onInputChange}
