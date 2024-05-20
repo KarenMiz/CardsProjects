@@ -15,8 +15,8 @@ export const signup = async (normalizedUser) => {
   try {
     const { data } = await axios.post(apiUrl, normalizedUser);
     return data;
-  } catch (error) {
-    throw new Error(error.message);
+   } catch (error) {
+     throw new Error(error.message);
   }
 };
 

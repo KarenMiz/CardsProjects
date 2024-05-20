@@ -34,7 +34,6 @@ export default function EditAccount() {
                 });
     }, [handleGetUser, user, setData]);
 
-
     if (!user) return <Navigate replace to={ROUTES.CARDS} />;
     return (
         <Container
@@ -54,7 +53,7 @@ export default function EditAccount() {
                     validateForm={validateForm}
                     onInputChange={handleChange}
                     data={data}
-                    // onChange={handleChangeCheckBox}
+                   
                 />
             )}
         </Container>

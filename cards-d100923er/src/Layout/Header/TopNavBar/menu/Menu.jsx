@@ -67,12 +67,18 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
               navigateTo={ROUTES.EDIT_USER}
               onClick={onClose}
             />
-             <MenuLink
+            <MenuLink
               text="My Favorites"
               navigateTo={ROUTES.FAV_CARDS}
               onClick={onClose}
             />
-            
+
+            <MenuLink
+              text="My Cards"
+              navigateTo={ROUTES.MY_CARDS}
+              onClick={onClose}
+            />
+
             <MenuItem onClick={onLogout}>Logout</MenuItem>
           </>
         )}

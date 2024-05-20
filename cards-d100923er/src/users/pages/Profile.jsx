@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import useUsers from "../hooks/useUsers";
 import { useUser } from "../providers/UserProvider";
-import { Container, Box, Typography, Avatar, Paper, Grid } from "@mui/material";
+import { Container, Box, Typography, Avatar, Paper, Grid, IconButton, CardActions, Tooltip } from "@mui/material";
 import { Navigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import Spinner from "../../component/Spinner";
+import { useNavigate } from "react-router-dom";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+
+
+
 
 export default function Profile() {
     const { handleGetUser } = useUsers();
     const { user } = useUser();
     const [userFullData, setUserFullData] = useState(null);
+    const navigate = useNavigate();
     useEffect(() => {
         if (user) {
             const getUser = async () => {
@@ -23,10 +29,9 @@ export default function Profile() {
 
     if (!userFullData) return <Spinner />;
 
-
     return (
-        <Container maxWidth="md">
-            <Box sx={{ my: 1 }}>
+        <Container maxWidth="md" sx={{display:"flex"}}>
+            <Box sx={{ my: 1 , marginTop:"15ex"}}>
                 <Grid container spacing={1}>
                     <Grid item xs={12} md={4}>
                         <Avatar
@@ -53,6 +58,14 @@ export default function Profile() {
                                 {userFullData.address.state}, {userFullData.address.country},{" "}
                                 {userFullData.address.zip}
                             </Typography>
+                            <CardActions sx={{justifyContent:"right"}}>
+                                <Tooltip title="wanna edit your details?">
+                            <IconButton 
+                                onClick={() => { navigate(ROUTES.EDIT_USER); }}>
+                                <ModeEditIcon />
+                            </IconButton>
+                            </Tooltip>
+                            </CardActions>
                         </Paper>
                     </Grid>
                 </Grid>

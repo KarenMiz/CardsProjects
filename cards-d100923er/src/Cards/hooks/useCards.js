@@ -1,4 +1,4 @@
-import { useCallback, useEffect,  useMemo,  useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { getCards, getMyCards, editCard, getCard, createCard, deleteCard, changeLikeStatus } from "../services/cardsApiServices";
 import ROUTES from "../../routes/routesModel";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -33,14 +33,14 @@ export default function useCards() {
         )
       );
   }, [cards, query]);
-  
+
   const requestStatus = (loading, errorMessage, cards, card = null) => {
     setIsLoading(loading);
     setError(errorMessage);
     setCards(cards);
     setCard(card);
   };
-  
+
   const getAllCards = useCallback(async () => {
     try {
       setError(null);
@@ -138,8 +138,8 @@ export default function useCards() {
     },
     [setSnack]
   );
-  
-  
+
+
   const handleGetFavCards = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -150,8 +150,8 @@ export default function useCards() {
       requestStatus(false, error, null);
     }
   }, [user]);
-  
-  
+
+
   const handleGetMyCards = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -161,11 +161,11 @@ export default function useCards() {
       requestStatus(false, error, null);
     }
   }, []);
-  
+
 
   const value = useMemo(() => {
     return { isLoading, cards, card, error, filterCard };
   }, [isLoading, cards, card, error, filterCard]);
 
-  return {value,cards, card, error, isLoading, filterCard,  user, query, requestStatus, getAllCards, getCardById, handleCardsDelete, handleCardsLike, handleCreateCard, handleUpdateCard, handleGetFavCards,handleGetMyCards };
+  return { value, cards, card, error, isLoading, filterCard, user, query, requestStatus, getAllCards, getCardById, handleCardsDelete, handleCardsLike, handleCreateCard, handleUpdateCard, handleGetFavCards, handleGetMyCards };
 }

@@ -32,10 +32,11 @@ const useUsers = () => {
         navigate(ROUTES.CARDS);
       } catch (error) {
         setError(error.message);
+        setSnack("error", "Incorrect email or password");
       }
       setIsLoading(false);
     },
-    [setToken, setUser, navigate]
+    [setToken, setUser, navigate, setSnack]
   );
 
   const handleLogout = useCallback(() => {
@@ -55,11 +56,14 @@ const useUsers = () => {
         });
       } catch (error) {
         setError(error.message);
+        setSnack("error", "This email already exists!");
       }
       setIsLoading(false);
     },
-    [handleLogin]
+    [handleLogin, setSnack]
   );
+
+
 
   const handleGetUser = useCallback(async (id) => {
     try {
