@@ -9,17 +9,16 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
-import normalizEditForUser from "../helpers/normalization/normalizEditForUser";
+import normalizEditForUser from "../helpers/normalization/normalizeEditForUser";
 import { useSnack } from "../../providers/SnackbarProvider";
 import normalizeUser from "../helpers/normalization/normalizeUser";
 
 
 const useUsers = () => {
   const [isLoading, setIsLoading] = useState();
-  const [userDeatails, setUserD] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { user, setUser, setToken } = useUser();
+  const { setUser, setToken } = useUser();
   const setSnack = useSnack();
 
   const handleLogin = useCallback(
@@ -90,10 +89,10 @@ const useUsers = () => {
       }
       setIsLoading(false);
     },
-    [setSnack, navigate, setUser]
+    [setSnack, navigate]
   );
 
-  return { isLoading, error, userDeatails, handleLogin, handleLogout, handleSignup, handleGetUser, handleUpdateUser };
+  return { isLoading, error, handleLogin, handleLogout, handleSignup, handleGetUser, handleUpdateUser };
 };
 
 export default useUsers;

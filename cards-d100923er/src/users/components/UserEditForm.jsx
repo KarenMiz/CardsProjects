@@ -2,7 +2,6 @@ import React from "react";
 import Form from "../../forms/components/Form";
 import ROUTES from "../../routes/routesModel";
 import Input from "../../forms/components/Input";
-import { Grid, FormControlLabel, Checkbox } from "@mui/material";
 const UserEditForm = ({
     title,
     onSubmit,
@@ -11,7 +10,6 @@ const UserEditForm = ({
     errors,
     data,
     onInputChange,
-    handleChangeCheckBox,
 }) => {
     return (
         <Form
