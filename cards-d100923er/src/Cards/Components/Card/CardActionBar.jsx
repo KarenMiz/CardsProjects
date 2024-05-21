@@ -1,4 +1,4 @@
-import { Box, CardActions, IconButton } from "@mui/material";
+import { Box, CardActions, IconButton, Tooltip } from "@mui/material";
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
@@ -23,7 +23,6 @@ export default function CardActionBar({
   const [isDialogOpen, setDialog] = useState(false);
   const [isLiked, setIsLiked] = useState(() => likes && likes.includes(user?._id));
   const navigate = useNavigate();
-
   const handleDelete = async () => {
     await handleCardsDelete(cardId);
     setDialog(false);
@@ -66,9 +65,11 @@ export default function CardActionBar({
             </IconButton>
           </a>
           {user && (
-            <IconButton aria-label="Add to favorite" onClick={handleLike}>
-              <FavoriteIcon color={isLiked ? "error" : "inherit"} />
-            </IconButton>
+            <Tooltip title={isLiked ? "Remove the card from your favorites" : "Do you like this card?"}>
+              <IconButton aria-label="Add to favorite" onClick={handleLike}>
+                <FavoriteIcon color={isLiked ? "error" : "inherit"} />
+              </IconButton>
+            </Tooltip>
           )}
         </Box>
       </CardActions>

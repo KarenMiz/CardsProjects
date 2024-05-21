@@ -8,10 +8,11 @@ import ROUTES from "../../../routes/routesModel";
 
 export default function CardComponent({ card, handleCardsDelete, handleCardsLike }) {
   const navigate = useNavigate();
+  console.log(card);
   return (<>
     <Card sx={{ width: 250, m: 2, display: 'flex', flexDirection: 'column' }}>
       <CardActionArea
-      onClick={() => navigate(ROUTES.CARD_INFO + "/" + card._id)}
+        onClick={() => navigate(ROUTES.CARD_INFO + "/" + card._id)}
       >
         <CardHeaderComponent image={card.image} />
         <CardBody
@@ -25,17 +26,15 @@ export default function CardComponent({ card, handleCardsDelete, handleCardsLike
 
       </CardActionArea>
       <div style={{ marginTop: 'auto' }}>
-      <CardActionBar 
-        handleCardsLike={handleCardsLike}
-        handleCardsDelete={handleCardsDelete}
-        cardId={card._id}
-        userId={card.user_id}
-        likes={card.likes}
-        phone={card.phone}
-      />
+        <CardActionBar
+          handleCardsLike={handleCardsLike}
+          handleCardsDelete={handleCardsDelete}
+          cardId={card._id}
+          userId={card.user_id}
+          likes={card.likes}
+          phone={card.phone}
+        />
       </div>
-     
-     
     </Card>
   </>
   );

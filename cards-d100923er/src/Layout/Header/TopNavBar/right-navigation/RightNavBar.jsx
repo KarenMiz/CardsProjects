@@ -1,5 +1,4 @@
-import { Box, IconButton } from "@mui/material";
-import React from "react";
+import { Box, CardActions, IconButton, Tooltip } from "@mui/material";
 import Logged from "./Logged";
 import NotLogged from "./NotLogged";
 import { useUser } from "../../../../users/providers/UserProvider";
@@ -10,7 +9,8 @@ import SearchBar from "./SearchBar";
 
 export default function RightNavBar() {
   const { user } = useUser();
-  const {isDark, toggleDarkMode} = useTheme();
+  const { isDark, toggleDarkMode } = useTheme();
+
   return (
     <>
       <Box
@@ -19,10 +19,13 @@ export default function RightNavBar() {
           alignItems: "center",
         }}
       >
-        <SearchBar/>
-        <IconButton sx={{ml: 1}} onClick={toggleDarkMode}>
-        {isDark? <LightModeIcon /> : <DarkModeIcon />}
-        </IconButton>
+        <SearchBar />
+        <CardActions>
+          <Tooltip title="Dark/Light Mode">
+            <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode}>
+              {isDark ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
+          </Tooltip></CardActions>
         {user && <Logged />}
         {!user && <NotLogged />}
       </Box>
