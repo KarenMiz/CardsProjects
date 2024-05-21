@@ -8,7 +8,6 @@ import ROUTES from "../../../routes/routesModel";
 
 export default function CardComponent({ card, handleCardsDelete, handleCardsLike }) {
   const navigate = useNavigate();
-  console.log(card);
   return (<>
     <Card sx={{ width: 250, m: 2, display: 'flex', flexDirection: 'column' }}>
       <CardActionArea
