@@ -2,12 +2,16 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useCards from "../hooks/useCards";
 import Spinner from "../../component/Spinner";
-import { Container, Typography, Avatar, Paper } from "@mui/material";
+import { Container, Typography, Avatar, Paper, IconButton, CardActions } from "@mui/material";
+import { useUser } from "../../users/providers/UserProvider";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function CardDetailsPage() {
     const { id } = useParams();
     const { value, getCardById } = useCards();
     const { card } = value;
+    const { user } = useUser();
+   
 
     useEffect(() => {
         getCardById(id);
@@ -29,9 +33,9 @@ export default function CardDetailsPage() {
             <Avatar
                 alt={card.image.alt}
                 src={card.image.url}
-                sx={{ width: 200, height: 200, mb: 3 }}
+                sx={{ width: 200, height: 200, mb: 3, marginTop:2}}
             />
-            <Paper elevation={3} sx={{ p: 3, width: "80%" }}>
+            <Paper elevation={3} sx={{ p: 3, width: "80%" ,mb: 5}}>
                 <Typography variant="h4" component="div" gutterBottom
                     sx={{ textTransform: "capitalize" }}>
                     {card.title}
@@ -51,6 +55,13 @@ export default function CardDetailsPage() {
                 <Typography variant="body2">
                     <strong>Card ID:</strong> {id}
                 </Typography>
+                <CardActions>
+                    {user && (
+                        <IconButton >
+                            <FavoriteIcon  />
+                        </IconButton>
+                    )}
+                </CardActions>
             </Paper>
         </Container>
     );

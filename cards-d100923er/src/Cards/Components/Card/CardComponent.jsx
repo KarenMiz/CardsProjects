@@ -34,6 +34,8 @@ export default function CardComponent({ card, handleCardsDelete, handleCardsLike
         phone={card.phone}
       />
       </div>
+     
+     
     </Card>
   </>
   );
