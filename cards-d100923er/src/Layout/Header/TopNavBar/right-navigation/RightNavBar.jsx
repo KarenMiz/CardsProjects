@@ -25,7 +25,8 @@ export default function RightNavBar() {
             <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode}>
               {isDark ? <LightModeIcon /> : <DarkModeIcon />}
             </IconButton>
-          </Tooltip></CardActions>
+          </Tooltip>
+          </CardActions>
         {user && <Logged />}
         {!user && <NotLogged />}
       </Box>

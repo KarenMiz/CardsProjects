@@ -8,14 +8,12 @@ import Spinner from "../../component/Spinner";
 import { useNavigate } from "react-router-dom";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
-
-
-
 export default function Profile() {
     const { handleGetUser } = useUsers();
     const { user } = useUser();
     const [userFullData, setUserFullData] = useState(null);
     const navigate = useNavigate();
+
     useEffect(() => {
         if (user) {
             const getUser = async () => {
@@ -26,25 +24,23 @@ export default function Profile() {
     }, [user, handleGetUser]);
 
     if (!user) return <Navigate replace to={ROUTES.CARDS} />;
-
     if (!userFullData) return <Spinner />;
 
     return (
-        <Container maxWidth="md" sx={{display:"flex"}}>
-            <Box sx={{ my: 1 , marginTop:"15ex"}}>
-                <Grid container spacing={1}>
-                    <Grid item xs={12} md={4}>
+        <Container maxWidth="md" sx={{ display: "flex", justifyContent: "center" }}>
+            <Box sx={{ my: 1 }}>
+                <Grid container spacing={2} alignItems="center">
+                    <Grid item xs={12} md={4} display="flex" justifyContent="center">
                         <Avatar
                             alt={userFullData.image.alt}
                             src={userFullData.image.url}
-                            sx={{ width: 200, height: 200 }}
+                            sx={{ width: { xs: 100, md: 200 }, height: { xs: 100, md: 200 } }}
                         />
                     </Grid>
-                    <Grid item xs={1} md={8}>
+                    <Grid item xs={12} md={8}>
                         <Paper elevation={2} sx={{ p: 2 }}>
                             <Typography variant="h4" component="div" gutterBottom>
-                                {userFullData.name.first} {userFullData.name.middle}{" "}
-                                {userFullData.name.last}
+                                {userFullData.name.first} {userFullData.name.middle} {userFullData.name.last}
                             </Typography>
                             <Typography variant="body1" gutterBottom>
                                 Email: {userFullData.email}
@@ -53,18 +49,14 @@ export default function Profile() {
                                 Phone: {userFullData.phone}
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                Address: {userFullData.address.street}{" "}
-                                {userFullData.address.houseNumber}, {userFullData.address.city},{" "}
-                                {userFullData.address.state}, {userFullData.address.country},{" "}
-                                {userFullData.address.zip}
+                                Address: {userFullData.address.street} {userFullData.address.houseNumber}, {userFullData.address.city}, {userFullData.address.state}, {userFullData.address.country}, {userFullData.address.zip}
                             </Typography>
-                            <CardActions sx={{justifyContent:"right"}}>
-                                <Tooltip title="wanna edit your details?">
-                            <IconButton 
-                                onClick={() => { navigate(ROUTES.EDIT_USER); }}>
-                                <ModeEditIcon />
-                            </IconButton>
-                            </Tooltip>
+                            <CardActions sx={{ justifyContent: "flex-end" }}>
+                                <Tooltip title="Edit your details">
+                                    <IconButton onClick={() => { navigate(ROUTES.EDIT_USER); }}>
+                                        <ModeEditIcon />
+                                    </IconButton>
+                                </Tooltip>
                             </CardActions>
                         </Paper>
                     </Grid>
