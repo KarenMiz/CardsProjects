@@ -43,13 +43,13 @@ export const MenuProvider = ({ children }) => {
         right="20px"
       ></Box>
 
-      {anchorEL && (
+      {/* {anchorEL && (
         <Menu
           anchorEl={anchorEL}
           isOpen={isOpen}
           onClose={() => setOpen(false)}
         />
-      )}
+      )} */}
     </>
   );
 };

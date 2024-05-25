@@ -16,6 +16,7 @@ import Tooltip from "@mui/material/Tooltip";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useTheme } from "../../../../providers/CustomThemeProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function Menu({ isOpen, anchorEl, onClose }) {
   const { user } = useUser();
@@ -24,7 +25,7 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const { isDark, toggleDarkMode } = useTheme();
-
+  const navigate = useNavigate();
   const handleMobileToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -40,16 +41,19 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
   const renderMenuItems = () => (
     <Box>
       {isMobile && <SearchBar />}
-      <MenuLink text="about" navigateTo={ROUTES.ABOUT} onClick={onClose} />
+      <MenuLink text="About" navigateTo={ROUTES.ABOUT} onClick={onClose} />
       {!user ? (
         <>
-          <MenuLink text="login" navigateTo={ROUTES.LOGIN} onClick={onClose} sx={{ color: "blue" }} />
-          <MenuLink text="signup" navigateTo={ROUTES.SIGNUP} onClick={onClose} />
+          <MenuLink text="Login" navigateTo={ROUTES.LOGIN} onClick={onClose} sx={{ color: "blue" }} />
+          <MenuLink text="Signup" navigateTo={ROUTES.SIGNUP} onClick={onClose} />
         </>
       ) : (
         <>
-          <MenuLink text="profile" navigateTo={ROUTES.USER_PROFILE} onClick={onClose} />
-          <MenuLink text="edit account" navigateTo={ROUTES.EDIT_USER} onClick={onClose} />
+          <MenuLink text="Profile" navigateTo={ROUTES.USER_PROFILE} onClick={onClose} />
+          <MenuItem onClick={() => {
+            navigate(ROUTES.EDIT_USER);
+          }}>Edit Account</MenuItem>
+          <MenuLink text="Edit Account" navigateTo={ROUTES.EDIT_USER} onClick={onClose} />
           <MenuLink text="Favorites Cards" navigateTo={ROUTES.FAV_CARDS} onClick={onClose} />
           {user && (user.isAdmin || user.isBusiness) ? (
             <MenuLink text="My Cards" navigateTo={ROUTES.MY_CARDS} onClick={onClose} />
@@ -57,7 +61,7 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
           <MenuItem onClick={onLogout}>Logout</MenuItem>
         </>
       )}
-      {isMobile && ( // Render Dark Mode toggle button only in mobile mode
+      {isMobile && (
         <MenuItem>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Tooltip title="Dark/Light Mode">
