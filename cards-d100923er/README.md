@@ -1,3 +1,94 @@
+# Business Promotion Platform
+
+Welcome to the Business Promotion Platform! This platform provides business owners with a space to advertise their businesses and interact with their audience through tickets and favorite cards.
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/KarenMiz/business-promotion-platform.git
+
+Install dependencies:
+npm install
+Start the development server:
+npm start
+
+Functionality
+Business Owner Features:
+Registration: Business owners can register on the site to create an account.
+
+Business Promotion: Once registered and logged in, business owners can advertise their businesses on the platform.
+
+Ticket Creation: Business owners can create tickets to interact with their audience, such as announcing events, promotions, or updates related to their business.
+
+My Tickets Page: Business owners have access to a dedicated "My Tickets" page where they can view, edit, and delete their created tickets.
+
+User Features:
+Card Interaction: Users can like cards on the site, which will be saved in their favorite cards list for easy access.
+
+Favorite Cards: Users have a page containing all the cards they've liked, allowing them to revisit and engage with their favorite businesses.
+
+Interfacing with the Site
+Registration/Login: Business owners need to register on the site to access features like business promotion and ticket creation. Regular users can browse the site without registration but need to register to like cards.
+
+Business Promotion: Business owners can advertise their businesses by filling out a form with business details and uploading images.
+
+Ticket Creation: Business owners can create tickets from their dashboard, providing details about the event, promotion, or update they want to share.
+
+Card Interaction: Users can interact with cards by clicking on the like button. Liked cards are automatically saved to the user's favorites.
+
+My Tickets Page: Business owners can manage their tickets from the "My Tickets" page, where they can edit or delete existing tickets.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

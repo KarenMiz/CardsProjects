@@ -1,4 +1,3 @@
-
 import React, {
   useState,
   useContext,
@@ -16,7 +15,7 @@ const MenuContext = createContext(null);
 
 export const MenuProvider = ({ children }) => {
   const theme = useMuiTheme();
-  const screenSize = useMediaQuery(theme.breakpoints.up("md"));
+  const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
 
   const [isOpen, setOpen] = useState(false);
   const [anchorEL, setAnchor] = useState(null);
@@ -29,27 +28,28 @@ export const MenuProvider = ({ children }) => {
 
   useEffect(() => {
     setOpen(false);
-  }, [screenSize]);
+  }, [isMobile]);
 
   return (
     <>
       <MenuContext.Provider value={setOpen}>{children}</MenuContext.Provider>
 
-      <Box
-        ref={anchorRef}
-        component="span"
-        position="fixed"
-        top="70px"
-        right="20px"
-      ></Box>
+        <Box
+          ref={anchorRef}
+          component="span"
+          position="fixed"
+          top="70px"
+          right="20px"
+        ></Box>
+      
 
-      {/* {anchorEL && (
+      {anchorEL && (
         <Menu
           anchorEl={anchorEL}
           isOpen={isOpen}
           onClose={() => setOpen(false)}
         />
-      )} */}
+      )}
     </>
   );
 };

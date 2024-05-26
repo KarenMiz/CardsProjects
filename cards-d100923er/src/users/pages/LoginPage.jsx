@@ -19,6 +19,11 @@ export default function LoginPage() {
     useForm(initialLoginForm, loginSchema, handleLogin);
   const { user } = useUser();
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      onSubmit(); 
+    }
+  };
   if (user) return <Navigate to={ROUTES.ROOT} replace />
   return (
     <Container>
@@ -49,6 +54,7 @@ export default function LoginPage() {
             error={errors.email}
             onChange={handleChange}
             data={data}
+            onKeyPress={handleKeyPress}
           />
           <Input
             label="password"
@@ -57,6 +63,7 @@ export default function LoginPage() {
             error={errors.password}
             onChange={handleChange}
             data={data}
+            onKeyPress={handleKeyPress}
           />
           <Grid item xs={12}>
             <Button

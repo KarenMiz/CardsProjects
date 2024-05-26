@@ -6,16 +6,14 @@ import { MenuProvider } from './menu/MenuProvider';
 import Menu from './menu/Menu';
 
 
-
 export default function NavBar() {
-  
   return (
     <MenuProvider>
       <AppBar  position="sticky" elevation={10}>
         <Toolbar sx={{justifyContent: "space-between"}}>
           <LeftNavBar />
           <RightNavBar  />
-          <Menu />
+          <Menu/>
         </Toolbar>
       </AppBar>
     </MenuProvider>

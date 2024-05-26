@@ -13,6 +13,14 @@ const SignupForm= ({
   onInputChange,
   handleChangeCheckBox,
 })=> {
+
+  
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      onSubmit(); 
+    }
+  };
+
   return (
     <Form
       title={title}
@@ -30,6 +38,7 @@ const SignupForm= ({
         onChange={onInputChange}
         data={data}
         sm={6}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="middle"
@@ -39,6 +48,7 @@ const SignupForm= ({
         data={data}
         sm={6}
         required={false}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="last"
@@ -47,6 +57,7 @@ const SignupForm= ({
         onChange={onInputChange}
         data={data}
         sm={6}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="phone"
@@ -56,6 +67,7 @@ const SignupForm= ({
         onChange={onInputChange}
         data={data}
         sm={6}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="email"
@@ -65,6 +77,7 @@ const SignupForm= ({
         onChange={onInputChange}
         data={data}
         sm={6}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="password"
@@ -74,6 +87,7 @@ const SignupForm= ({
         onChange={onInputChange}
         data={data}
         sm={6}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="url"
@@ -83,6 +97,7 @@ const SignupForm= ({
         data={data}
         sm={6}
         required={false}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="alt"
@@ -92,6 +107,7 @@ const SignupForm= ({
         data={data}
         sm={6}
         required={false}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="state"
@@ -101,6 +117,7 @@ const SignupForm= ({
         data={data}
         sm={6}
         required={false}
+        onKeyPress={handleKeyPress}
       />
       <Input
         label="country"
@@ -109,6 +126,7 @@ const SignupForm= ({
         onChange={onInputChange}
         data={data}
         sm={6}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="city"
@@ -117,6 +135,7 @@ const SignupForm= ({
         onChange={onInputChange}
         data={data}
         sm={6}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="street"
@@ -125,6 +144,7 @@ const SignupForm= ({
         onChange={onInputChange}
         data={data}
         sm={6}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="houseNumber"
@@ -134,6 +154,7 @@ const SignupForm= ({
         onChange={onInputChange}
         data={data}
         sm={6}
+        onKeyPress={handleKeyPress}
       />
       <Input
         name="zip"
@@ -143,6 +164,7 @@ const SignupForm= ({
         data={data}
         sm={6}
         required={false}
+        onKeyPress={handleKeyPress}
       />
       <Grid item>
         <FormControlLabel
@@ -150,6 +172,7 @@ const SignupForm= ({
           name="isBusiness"
           control={<Checkbox value={data.isBusiness} color="primary" />}
           label="Signup as business"
+          onKeyPress={handleKeyPress}
         />
       </Grid>
     </Form>

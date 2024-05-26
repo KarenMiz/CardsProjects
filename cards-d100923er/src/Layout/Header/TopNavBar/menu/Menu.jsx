@@ -16,7 +16,6 @@ import Tooltip from "@mui/material/Tooltip";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useTheme } from "../../../../providers/CustomThemeProvider";
-import { useNavigate } from "react-router-dom";
 
 export default function Menu({ isOpen, anchorEl, onClose }) {
   const { user } = useUser();
@@ -25,7 +24,7 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const { isDark, toggleDarkMode } = useTheme();
-  const navigate = useNavigate();
+
   const handleMobileToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -50,10 +49,7 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
       ) : (
         <>
           <MenuLink text="Profile" navigateTo={ROUTES.USER_PROFILE} onClick={onClose} />
-          <MenuItem onClick={() => {
-            navigate(ROUTES.EDIT_USER);
-          }}>Edit Account</MenuItem>
-          <MenuLink text="Edit Account" navigateTo={ROUTES.EDIT_USER} onClick={onClose} />
+          <MenuLink text="Edit account" navigateTo={ROUTES.EDIT_USER} onClick={onClose} />
           <MenuLink text="Favorites Cards" navigateTo={ROUTES.FAV_CARDS} onClick={onClose} />
           {user && (user.isAdmin || user.isBusiness) ? (
             <MenuLink text="My Cards" navigateTo={ROUTES.MY_CARDS} onClick={onClose} />
@@ -61,15 +57,15 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
           <MenuItem onClick={onLogout}>Logout</MenuItem>
         </>
       )}
-      {isMobile && (
+      {isMobile && ( 
         <MenuItem>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center'}}>
             <Tooltip title="Dark/Light Mode">
               <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode}>
                 {isDark ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
             </Tooltip>
-            <Box component="span" ml={1}>Dark/Light Mode</Box>
+            <Box component="span" ml={1} ></Box>
           </Box>
         </MenuItem>
       )}
@@ -79,7 +75,7 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
   return (
     <>
       {isMobile ? (
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mr: 2 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mr: 2 ,height:"0px"}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -92,7 +88,7 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
             anchor="right"
             open={mobileOpen}
             onClose={handleMobileToggle}
-            sx={{ '& .MuiDrawer-paper': { width: 'auto', height: 'auto', maxHeight: '100%' } }}
+            sx={{ '& .MuiDrawer-paper': { width: 'auto', height: 'auto', maxHeight: '100%', top:"62px", right:"10px",elevation:3 } }}
           >
             {renderMenuItems()}
           </Drawer>
@@ -100,7 +96,7 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
       ) : (
         <MuiMenu
           open={isOpen}
-          onClose={onClose}
+         onClose={onClose}
           anchorEl={anchorEl}
           anchorOrigin={{
             vertical: "top",
