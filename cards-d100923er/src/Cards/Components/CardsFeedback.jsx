@@ -5,6 +5,7 @@ import Spinner from '../../component/Spinner'
 import Error from '../../component/Error'
 export default function CardsFeedback({
   isLoading,
+  filterCard,
   cards,
   error,
   handleCardsDelete,
@@ -26,6 +27,7 @@ export default function CardsFeedback({
         cards={cards}
         handleCardsLike={handleCardsLike}
         handleCardsDelete={handleCardsDelete}
+        
       />
     );
   }

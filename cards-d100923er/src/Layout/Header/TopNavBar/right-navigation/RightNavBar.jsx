@@ -15,10 +15,11 @@ export default function RightNavBar() {
     <>
       <Box
         sx={{
-          display: { xs: "none", md: "inline-flex" },
+          display: { md: "inline-flex" },
           alignItems: "center",
         }}
       >
+        <Box sx={{ display: {xs: "none",  md: "inline-flex"  }}}>
         <SearchBar />
         <CardActions>
           <Tooltip title="Dark/Light Mode">
@@ -27,6 +28,8 @@ export default function RightNavBar() {
             </IconButton>
           </Tooltip>
           </CardActions>
+
+        </Box>
         {user && <Logged />}
         {!user && <NotLogged />}
       </Box>

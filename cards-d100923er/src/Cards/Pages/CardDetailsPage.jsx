@@ -5,13 +5,13 @@ import Spinner from "../../component/Spinner";
 import { Container, Typography, Avatar, Paper, IconButton, CardActions, Tooltip } from "@mui/material";
 import { useUser } from "../../users/providers/UserProvider";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn"; 
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 export default function CardDetailsPage() {
     const { id } = useParams();
     const { value, getCardById, handleCardsLike } = useCards();
+    const { card } = value;
     const { user } = useUser();
-    const [card, setCard] = useState(null);
     const [likes, setLikes] = useState([]);
     const [isLiked, setIsLiked] = useState(false);
 
@@ -20,13 +20,11 @@ export default function CardDetailsPage() {
     }, [id, getCardById]);
 
     useEffect(() => {
-        if (value.card) {
-            const { card } = value;
-            setCard(card);
+        if (card && card.likes) {
             setLikes(card.likes);
             setIsLiked(card.likes.includes(user?._id));
         }
-    }, [value, user]);
+    }, [card, user]);
 
     const handleLike = async () => {
         await handleCardsLike(id);
@@ -43,19 +41,12 @@ export default function CardDetailsPage() {
         return likesArray.length;
     };
 
-    const openGoogleMaps = () => {
-        if (card) {
-            const { address } = card;
-            const formattedAddress = `${address.street} ${address.houseNumber}, ${address.city}, ${address.state}, ${address.country}, ${address.zip}`;
-            const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(formattedAddress)}`;
-            window.open(mapUrl, "_blank");
-        }
-    };
-    
-
     if (!card) {
         return <Spinner />;
     }
+
+    const address = `${card.address.street} ${card.address.houseNumber}, ${card.address.city}, ${card.address.state}, ${card.address.country}, ${card.address.zip}`;
+    const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
 
     return (
         <Container maxWidth="sm" sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -65,7 +56,8 @@ export default function CardDetailsPage() {
                 sx={{ width: 200, height: 200, mb: 3, marginTop: 2 }}
             />
             <Paper elevation={3} sx={{ p: 3, width: "80%", mb: 5 }}>
-                <Typography variant="h4" component="div" gutterBottom sx={{ textTransform: "capitalize" }}>
+                <Typography variant="h4" component="div" gutterBottom
+                    sx={{ textTransform: "capitalize" }}>
                     {card.title}
                 </Typography>
                 <Typography variant="h6" gutterBottom>
@@ -75,10 +67,7 @@ export default function CardDetailsPage() {
                     <strong>Description:</strong> {card.description}
                 </Typography>
                 <Typography variant="body2" paragraph>
-                    <strong>Address:</strong> {card.address.street} {card.address.houseNumber}, {card.address.city}, {card.address.state}, {card.address.country}, {card.address.zip}
-                    <IconButton aria-label="Open in Maps" onClick={openGoogleMaps}>
-                        <LocationOnIcon />
-                    </IconButton>
+                    <strong>Address:</strong> {address}
                 </Typography>
                 <Typography variant="body2" paragraph>
                     <strong>Likes:</strong> {countLikes(likes)}
@@ -86,7 +75,12 @@ export default function CardDetailsPage() {
                 <Typography variant="body2">
                     <strong>Card ID:</strong> {id}
                 </Typography>
-                <CardActions sx={{ justifyContent: "right" }}>
+                <CardActions sx={{ justifyContent: "space-between" }}>
+                    <Tooltip title="Navigate to this address">
+                        <IconButton aria-label="Navigate to address" href={mapsUrl} target="_blank">
+                            <LocationOnIcon color="primary" />
+                        </IconButton>
+                    </Tooltip>
                     <Tooltip title={isLiked ? "Remove the card from your favorites" : "Do you like this card?"}>
                         {user && (
                             <IconButton aria-label="Add to favorite" onClick={handleLike}>

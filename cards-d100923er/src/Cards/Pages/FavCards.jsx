@@ -45,8 +45,8 @@ export default function FavCards() {
                     isLoading={isLoading}
                     error={error}
                     cards={filterCard}
-                    handleDelete={handleDelete}
-                    handleLike={handleLike}
+                    handleCardsDelete={handleDelete}
+                    handleCardsLike={handleLike}
                 />
                 <AddNewCardButton />
             </Container>

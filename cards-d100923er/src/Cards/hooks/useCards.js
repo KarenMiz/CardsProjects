@@ -24,16 +24,19 @@ export default function useCards() {
   useEffect(() => {
     setQuery(searchParams.get("q") ?? "");
   }, [searchParams]);
+
+ 
   useEffect(() => {
-    if (cards)
+    if (Array.isArray(cards)) {
       setFilterCard(
         cards.filter(
           (card) =>
             card.title.includes(query) || String(card.bizNumber).includes(query)
         )
       );
+    }
   }, [cards, query]);
-
+  
   const requestStatus = (loading, errorMessage, cards, card = null) => {
     setIsLoading(loading);
     setError(errorMessage);
